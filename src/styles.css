@@ -17,8 +17,8 @@
 }
 
 :root {
-    --title: font-family: "roboto-title";
-    --headers: font-family: "roboto-headers";
+    --title: "roboto-title";
+    --headers: "roboto-headers";
     --text: "roboto-text";
 }
 
