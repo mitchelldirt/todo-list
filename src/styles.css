@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "roboto-headers";
+  src: url("Roboto-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto-text";
+  src: url("./Roboto-Light.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto-title";
+  src: url("./Roboto-BoldItalic.ttf");
+  font-style: italic;
+}
+
+:root {
+    --title: font-family: "roboto-title";
+    --headers: font-family: "roboto-headers";
+    --text: "roboto-text";
+}
+
+p {
+    font-family: var(--text);
+}
