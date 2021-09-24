@@ -47,6 +47,10 @@ body {
   background-color: var(--dark);
 }
 
+button {
+  font-family: var(--headers);
+}
+
 .nav {
   display: flex;
   flex-direction: column;
