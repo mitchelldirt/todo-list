@@ -35,6 +35,8 @@ h1 {
   font-family: var(--title, "roboto-title");
   color: var(--light);
   font-size: 2em;
+  margin: 4px;
+  top: 0;
 }
 
 p {
@@ -71,7 +73,7 @@ button {
   display: block;
   position: relative;
   right: 0px;
-  top: 25%;
+  top: 0;
   margin:4px;
   height: 9px;
   width:60px;
