@@ -32,6 +32,7 @@
 
 h1 {
   justify-self: center;
+  align-self: center;
   font-family: var(--title, "roboto-title");
   color: var(--light);
   font-size: 2em;
@@ -70,6 +71,8 @@ button {
 }
 
 #nav-icon1 span{
+  justify-self: center;
+  align-self: center;
   display: block;
   position: relative;
   right: 0px;
