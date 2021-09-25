@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
     <title>todo.list</title>
 </head>
 
@@ -12,23 +11,28 @@
     <header>
         <section id="header">
             <h1>to.do</h1>
-            <div>
+            <button id="hamburgerButton">
                 <input type="checkbox" id="nav-menu1">
                 <label id="nav-icon1" for="nav-menu1">
                     <span></span>
                     <span></span>
                     <span></span>
                 </label>
-            </div>
+            </button>
         </section>
-        <section class="nav">
+        <section class="displayNone nav" id="nav">
             <button>Inbox</button>
             <button>Week</button>
             <button>Projects</button>
             <button>Priority Board</button>
-            <button>Light 🌞</button>
+            <button>Light🌞Mode</button>
         </section>
+
+        <main id="content">
+
+        </main>
     </header>
 </body>
+<script src="main.js"></script>
 
 </html>
