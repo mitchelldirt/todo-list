@@ -126,7 +126,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\nvar hamburgerButton = document.getElementById(\"hamburgerButton\");\nhamburgerButton.addEventListener('click', function (event) {\n    event.preventDefault();\n    var nav = document.getElementById(\"nav\");\n    nav.classList.toggle(\"displayNone\");\n    console.log(nav);\n});\n\n\n//# sourceURL=webpack://todo-list/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\nvar hamburgerButton = document.getElementById(\"hamburgerButton\");\nhamburgerButton.addEventListener('click', function (event) {\n    event.preventDefault();\n    var nav = document.getElementById(\"nav\");\n    nav.classList.toggle(\"displayNone\");\n    console.log(nav);\n});\nvar lightDarkMode = document.getElementById(\"lmdm\");\nlightDarkMode.addEventListener('click', getColorValues);\nfunction getColorValues() {\n    console.log(\"done\");\n}\n;\nfunction setColorValues() {\n}\n;\n\n\n//# sourceURL=webpack://todo-list/./src/index.ts?");
 
 /***/ }),
 
