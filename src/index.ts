@@ -10,12 +10,10 @@ hamburgerButton.addEventListener('click', (event) => {
 });
 
 const lightDarkMode = document.getElementById("lmdm");
-lightDarkMode.addEventListener('click', getColorValues);
+lightDarkMode.addEventListener('click', setColorValues);
 
-function getColorValues() {
-console.log("done")
-};
 
 function setColorValues() {
-
+document.documentElement.style.setProperty('--light', '--dark')
+document.documentElement.style.setProperty('--dark', '--light')
 };

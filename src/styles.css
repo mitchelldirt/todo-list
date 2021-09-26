@@ -1,3 +1,11 @@
+:root {
+  --title: "roboto-title";
+  --headers: "roboto-headers";
+  --text: "roboto-text";
+  --light: #eea47f;
+  --dark: #00539c;
+}
+
 @font-face {
   font-family: "roboto-headers";
   src: url("./Roboto-Regular.ttf") format("truetype");
@@ -14,14 +22,6 @@
   font-family: "roboto-title";
   src: url("./Roboto-BoldItalic.ttf") format("truetype");
   font-style: normal;
-}
-
-:root {
-  --title: "roboto-title";
-  --headers: "roboto-headers";
-  --text: "roboto-text";
-  --light: #eea47f;
-  --dark: #00539c;
 }
 
 .flex {
