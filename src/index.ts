@@ -8,3 +8,14 @@ hamburgerButton.addEventListener('click', (event) => {
     nav.classList.toggle("displayNone");
     console.log(nav);
 });
+
+const lightDarkMode = document.getElementById("lmdm");
+lightDarkMode.addEventListener('click', getColorValues);
+
+function getColorValues() {
+console.log("done")
+};
+
+function setColorValues() {
+
+};
