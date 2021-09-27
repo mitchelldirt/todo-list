@@ -2,8 +2,8 @@
   --title: "roboto-title";
   --headers: "roboto-headers";
   --text: "roboto-text";
-  --light: #eea47f;
-  --dark: #00539c;
+  --lightColor: #eea47f;
+  --darkColor: #00539c;
 }
 
 @font-face {
@@ -33,7 +33,7 @@ h1 {
   justify-self: center;
   align-self: center;
   font-family: var(--title, "roboto-title");
-  color: var(--light);
+  color: var(--lightColor);
   font-size: 2em;
   margin: 4px;
   top: 0;
@@ -41,19 +41,19 @@ h1 {
 
 p {
   font-family: var(--text);
-  color: var(--light);
+  color: var(--lightColor);
   font-size: 2em;
 }
 
 body {
-  background-color: var(--dark);
+  background-color: var(--darkColor);
 }
 
 button {
   font-family: var(--headers);
   background-color: transparent;
   border: none;
-  color: var(--light);
+  color: var(--lightColor);
   font-size: 1.75em;
 }
 
@@ -83,7 +83,7 @@ button {
   margin: 4px;
   height: 9px;
   width: 60px;
-  background: var(--light);
+  background: var(--lightColor);
   border-radius: 9px;
   cursor: pointer;
   -webkit-transition: 0.25s ease-in-out;
