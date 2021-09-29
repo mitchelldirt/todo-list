@@ -20,7 +20,7 @@
                 </label>
             </button>
         </section>
-        <section class="displayNone" id="nav">
+        <section class="nav-section" id="nav">
             <div class="nav">
                 <button>Inbox</button>
                 <button>Week</button>
@@ -29,18 +29,24 @@
                 <button id="lmdm">Light🌞Mode</button>
             </div>
         </section>
-
+        <button class="trigger">Add Task</button>
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h1>Hello, I am a modal!</h1>
+            </div>
+        </div>
         <main id="content">
-<div class="todoColumn">
-    <form action="">
-    <input type="checkbox" name="check" id="check" class="todoCheck">
-    <label for="check">Do laundry</label>
-</form>
-    <div class="todoRow">
-        <date>09.27.2021</date>
-        <time>4:00PM</time>
-    </div>
-</div>
+            <div class="todoColumn">
+                <form action="">
+                    <input type="checkbox" name="check" id="check" class="todoCheck">
+                    <label for="check">Do laundry</label>
+                </form>
+                <div class="todoRow">
+                    <date>09.27.2021</date>
+                    <time>4:00PM</time>
+                </div>
+            </div>
         </main>
     </header>
     <script src="main.js"></script>
