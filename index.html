@@ -11,6 +11,9 @@
     <header>
         <section id="header">
             <h1>to.do</h1>
+            <center>
+                <button class="trigger">+Task</button>
+            </center>
             <button id="hamburgerButton">
                 <input type="checkbox" id="nav-menu1">
                 <label id="nav-icon1" for="nav-menu1">
@@ -29,13 +32,28 @@
                 <button id="lmdm">Light🌞Mode</button>
             </div>
         </section>
-        <center>
-        <button class="trigger">Add Task</button>
-    </center>
         <div class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
-                <h1>Hello, I am a modal!</h1>
+                <form action="">
+                    <label class="breakLabel" for="title">Title:</label>
+                    <input type="text" name="title" id="">
+                    <label class="breakLabel" for="description">Description:</label>
+                    <input type="text" name="description" id="">
+                    <label class="breakLabel" for="date">Date:</label>
+                    <input type="datetime-local" name="date" id="">
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <label for="project">Projects:</label>
+                    <select name="project" id="project">
+                        <option value="Low">Inbox</option>
+                        <option value="Medium">Sample</option>
+                    </select>
+                </form>
             </div>
         </div>
         <main id="content">
