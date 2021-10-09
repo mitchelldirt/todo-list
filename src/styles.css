@@ -6,15 +6,17 @@
   --darkColor: #00539c;
 }
 
-html, body {
+html,
+body {
   overflow: hidden;
 }
 
-/* LEAVE THIS COMMENTED UNLESS HAVING ISSUES WITH FORMATTING 
+/*
 * {
   outline: 1px solid red;
 } 
 */
+
 @font-face {
   font-family: "roboto-headers";
   src: url("./Roboto-Regular.ttf") format("truetype");
@@ -92,12 +94,23 @@ button {
   display: none;
 }
 
+.inputOutline {
+  border: 2px solid black;
+  background-color: lightgray;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 3%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2%;
 }
 
 .breakLabel::before {
@@ -155,6 +168,13 @@ button {
   transform: rotate(-135deg) translate(3px);
 }
 
+.submitBtn {
+  color: black;
+  align-self: center;
+  text-align: center;
+  width: fit-content;
+}
+
 input[type="checkbox"] {
   display: none;
 }
@@ -200,7 +220,7 @@ input[type="checkbox"] {
 .show-modal {
   opacity: 1;
   visibility: visible;
-  transform: scale(1.0);
+  transform: scale(1);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
@@ -208,6 +228,6 @@ input[type="checkbox"] {
   height: initial;
   visibility: visible;
   opacity: 1;
-  transform: scale(1.0);
+  transform: scale(1);
   transition: visibility 0s linear 0s, opacity 1s 0s, transform 1s;
 }
