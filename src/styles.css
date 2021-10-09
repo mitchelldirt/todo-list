@@ -19,19 +19,19 @@ body {
 
 @font-face {
   font-family: "roboto-headers";
-  src: url("./Roboto-Regular.ttf") format("truetype");
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "roboto-text";
-  src: url("./Roboto-Light.ttf") format("truetype");
+  src: url("./fonts/Roboto-Light.ttf") format("truetype");
   font-style: normal;
 }
 
 @font-face {
   font-family: "roboto-title";
-  src: url("./Roboto-BoldItalic.ttf") format("truetype");
+  src: url("./fonts/Roboto-BoldItalic.ttf") format("truetype");
   font-style: normal;
 }
 
