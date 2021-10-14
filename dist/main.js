@@ -130,6 +130,36 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/components/hamburgerButton.ts":
+/*!*******************************************!*\
+  !*** ./src/components/hamburgerButton.ts ***!
+  \*******************************************/
+/***/ (() => {
+
+eval("var hamburgerButton = document.getElementById(\"hamburgerButton\");\nhamburgerButton.addEventListener('click', function (event) {\n    event.preventDefault();\n    var nav = document.getElementById(\"nav\");\n    var mainNav = document.querySelector('.nav-section');\n    //nav.classList.toggle(\"displayNone\");\n    mainNav.classList.toggle('show-nav');\n    console.log(nav);\n});\n\n\n//# sourceURL=webpack://todo-list/./src/components/hamburgerButton.ts?");
+
+/***/ }),
+
+/***/ "./src/components/lightModeDarkMode.ts":
+/*!*********************************************!*\
+  !*** ./src/components/lightModeDarkMode.ts ***!
+  \*********************************************/
+/***/ (() => {
+
+eval("var lightDarkMode = document.getElementById(\"lmdm\");\nlightDarkMode.onclick = function LMDM() {\n    var color1 = document.documentElement.style.getPropertyValue('--lightColor');\n    if (color1 === '#00539c') {\n        lightDarkMode.textContent = \"Light🌞Mode\";\n        document.documentElement.style.setProperty('--lightColor', '#eea47f');\n        document.documentElement.style.setProperty('--darkColor', '#00539c');\n    }\n    else {\n        lightDarkMode.textContent = \"Dark🌝Mode\";\n        document.documentElement.style.setProperty('--lightColor', '#00539c');\n        document.documentElement.style.setProperty('--darkColor', '#eea47f');\n    }\n    ;\n};\n\n\n//# sourceURL=webpack://todo-list/./src/components/lightModeDarkMode.ts?");
+
+/***/ }),
+
+/***/ "./src/components/modal.ts":
+/*!*********************************!*\
+  !*** ./src/components/modal.ts ***!
+  \*********************************/
+/***/ (() => {
+
+eval("var modal = document.querySelector(\".modal\");\nvar trigger = document.querySelector(\".trigger\");\nvar closeButton = document.querySelector(\".close-button\");\nfunction toggleModal() {\n    modal.classList.toggle(\"show-modal\");\n}\nfunction windowOnClick(event) {\n    if (event.target === modal) {\n        toggleModal();\n    }\n}\ntrigger.addEventListener(\"click\", toggleModal);\ncloseButton.addEventListener(\"click\", toggleModal);\nwindow.addEventListener(\"click\", windowOnClick);\n\n\n//# sourceURL=webpack://todo-list/./src/components/modal.ts?");
+
+/***/ }),
+
 /***/ "./src/index.ts":
 /*!**********************!*\
   !*** ./src/index.ts ***!
@@ -137,37 +167,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/modal.js */ \"./src/components/modal.js\");\n/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_modal_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_hamburgerButton_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/hamburgerButton.js */ \"./src/components/hamburgerButton.js\");\n/* harmony import */ var _components_hamburgerButton_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_hamburgerButton_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_lightModeDarkMode_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/lightModeDarkMode.js */ \"./src/components/lightModeDarkMode.js\");\n/* harmony import */ var _components_lightModeDarkMode_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_lightModeDarkMode_js__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\nvar inbox = [];\nvar submitBtn = document.getElementById('submitBtn');\nsubmitBtn.onclick = function getInputs(e) {\n    e.preventDefault();\n    var title = document.getElementById(\"title\");\n    console.log('all clear');\n    return createObject(title.value);\n};\nfunction createObject(title) {\n    var newObject = {\n        title: title\n    };\n    console.log('all clear');\n    return storeObject(newObject);\n}\nfunction storeObject(obj) {\n    inbox.push(obj);\n    console.log('all clear');\n    return displayObjects(inbox);\n}\nfunction displayObjects(array) {\n    var main = document.getElementById('content');\n    var title = document.createElement('p');\n    title.textContent = array[0].title;\n    main.appendChild(title);\n    console.log('all clear');\n}\n\n\n//# sourceURL=webpack://todo-list/./src/index.ts?");
-
-/***/ }),
-
-/***/ "./src/components/hamburgerButton.js":
-/*!*******************************************!*\
-  !*** ./src/components/hamburgerButton.js ***!
-  \*******************************************/
-/***/ (() => {
-
-eval("const hamburgerButton = document.getElementById(\"hamburgerButton\");\nhamburgerButton.addEventListener('click', (event) => {\n    event.preventDefault();\n    let nav = document.getElementById(\"nav\");\n    let mainNav = document.querySelector('.nav-section')\n    //nav.classList.toggle(\"displayNone\");\n    mainNav.classList.toggle('show-nav')\n    console.log(nav);\n});\n\n//# sourceURL=webpack://todo-list/./src/components/hamburgerButton.js?");
-
-/***/ }),
-
-/***/ "./src/components/lightModeDarkMode.js":
-/*!*********************************************!*\
-  !*** ./src/components/lightModeDarkMode.js ***!
-  \*********************************************/
-/***/ (() => {
-
-eval("const lightDarkMode = document.getElementById(\"lmdm\");\nlightDarkMode.onclick = function LMDM() {\n    let color1 = document.documentElement.style.getPropertyValue('--lightColor');\n    if (color1 === '#00539c') {\n        lightDarkMode.textContent = \"Light🌞Mode\"\n        document.documentElement.style.setProperty('--lightColor', '#eea47f')\n        document.documentElement.style.setProperty('--darkColor', '#00539c')\n    } else {\n        lightDarkMode.textContent = \"Dark🌝Mode\";\n        document.documentElement.style.setProperty('--lightColor', '#00539c')\n        document.documentElement.style.setProperty('--darkColor', '#eea47f')\n    };\n};\n\n//# sourceURL=webpack://todo-list/./src/components/lightModeDarkMode.js?");
-
-/***/ }),
-
-/***/ "./src/components/modal.js":
-/*!*********************************!*\
-  !*** ./src/components/modal.js ***!
-  \*********************************/
-/***/ (() => {
-
-eval("const modal = document.querySelector(\".modal\");\nconst trigger = document.querySelector(\".trigger\");\nconst closeButton = document.querySelector(\".close-button\");\n\nfunction toggleModal() {\n    modal.classList.toggle(\"show-modal\");\n}\n\nfunction windowOnClick(event) {\n    if (event.target === modal) {\n        toggleModal();\n    }\n}\n\ntrigger.addEventListener(\"click\", toggleModal);\ncloseButton.addEventListener(\"click\", toggleModal);\nwindow.addEventListener(\"click\", windowOnClick);\n\n//# sourceURL=webpack://todo-list/./src/components/modal.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _components_modal_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/modal.ts */ \"./src/components/modal.ts\");\n/* harmony import */ var _components_modal_ts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_modal_ts__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_hamburgerButton_ts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/hamburgerButton.ts */ \"./src/components/hamburgerButton.ts\");\n/* harmony import */ var _components_hamburgerButton_ts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_hamburgerButton_ts__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_lightModeDarkMode_ts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/lightModeDarkMode.ts */ \"./src/components/lightModeDarkMode.ts\");\n/* harmony import */ var _components_lightModeDarkMode_ts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_lightModeDarkMode_ts__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\nvar inbox = [];\nvar submitBtn = document.getElementById('submitBtn');\nsubmitBtn.onclick = function getInputs(e) {\n    e.preventDefault();\n    var title = document.getElementById(\"title\");\n    console.log('all clear');\n    return createObject(title.value);\n};\nfunction createObject(title) {\n    var newObject = {\n        title: title\n    };\n    console.log('all clear');\n    return storeObject(newObject);\n}\nfunction storeObject(obj) {\n    inbox.push(obj);\n    console.log('all clear');\n    return displayObjects(inbox);\n}\nfunction displayObjects(array) {\n    var main = document.getElementById('content');\n    var title = document.createElement('p');\n    title.textContent = array[0].title;\n    main.appendChild(title);\n    console.log('all clear');\n}\n\n\n//# sourceURL=webpack://todo-list/./src/index.ts?");
 
 /***/ }),
 

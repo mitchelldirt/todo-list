@@ -1,7 +1,7 @@
 import './styles.css'
-import './components/modal.js'
-import './components/hamburgerButton.js';
-import './components/lightModeDarkMode.js'
+import './components/modal.ts'
+import './components/hamburgerButton.ts';
+import './components/lightModeDarkMode.ts'
 import { toDoItem } from './types';
 
 let inbox: toDoItem[] = [];
