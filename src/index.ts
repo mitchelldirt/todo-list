@@ -10,13 +10,19 @@ const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButto
 submitBtn.onclick = function getInputs(e) {
     e.preventDefault();
     const title = document.getElementById("title") as HTMLInputElement;
+    const descripton = document.getElementById("description") as HTMLTextAreaElement;
+    const dateT = document.getElementById("dateTime") as HTMLInputElement;
+    const priority = document.getElementById("priority") as HTMLSelectElement;
+    const project = document.getElementById("project") as HTMLSelectElement;
     console.log('all clear');
-    return createObject(title.value);
+    return createObject(title.value, descripton.value, dateT.valueAsDate, priority.value, project.value);
 }
 
-function createObject(title: string) {
+function createObject(title: string, descripton: string, dateT: string, priority: string, project: string) {
     let newObject: toDoItem = {
-        title: title
+        title: title,
+        descripton: descripton,
+        dateTime: dateT
     }
     console.log('all clear');
     return storeObject(newObject);

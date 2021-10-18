@@ -1,0 +1,17 @@
+1. Look into lodash for handling the datetime-local
+
+2. figure out the typeof dateTime input element.
+
+3. Put in red, yellow, or green emojis for priority or make the check box red / green / blue depending
+
+4. Format the way the todos look on mobile and desktop
+
+5. Get inbox to show everything
+
+6. Get weekly to show what date time objects are due the of and the next 7 days
+
+7. Create functionality to switch tasks to go to the sample project and make sure they don't show up in the inbox.
+
+8. Create functionality to create new projects
+
+9. Create a priority board that puts high priority items first and in each priority level sort them by their date from earliest to the furthest out
