@@ -1,4 +1,4 @@
-1. Look into lodash for handling the datetime-local
+1. Look into date-fns for handling the datetime-local
 
 2. figure out the typeof dateTime input element.
 

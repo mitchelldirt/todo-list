@@ -4,10 +4,11 @@
   "description": "This is my todo list project. I will be practicing object oriented programming using SOLID principles. This will be my first full project using Typescript and my second project that uses webpack. As someone who has tried a crazy amount of todo lists I'm excited to fine tune this to my liking!",
   "main": "webpack.config.js",
   "dependencies": {
-    "webpack": "^5.53.0",
-    "webpack-cli": "^4.8.0",
     "css-loader": "^6.2.0",
-    "style-loader": "^3.2.1"
+    "date-fns": "^2.25.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0"
   },
   "devDependencies": {
     "ts-loader": "^9.2.6",

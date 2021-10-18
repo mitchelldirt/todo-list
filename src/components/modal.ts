@@ -2,7 +2,7 @@ const modal: HTMLElement = document.querySelector(".modal") as HTMLDivElement;
 const trigger: HTMLElement = document.querySelector(".trigger") as HTMLButtonElement;
 const closeButton: HTMLElement = document.querySelector(".close-button") as HTMLSpanElement;
 
-function toggleModal() {
+export function toggleModal() {
     modal.classList.toggle("show-modal");
 }
 
