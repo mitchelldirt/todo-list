@@ -1,6 +1,6 @@
 1. Look into date-fns for handling the datetime-local
 
-2. figure out the typeof dateTime input element.
+2. Have the resetForm function also handle reseting the values in each input so they can actually change. 
 
 3. Put in red, yellow, or green emojis for priority or make the check box red / green / blue depending
 
