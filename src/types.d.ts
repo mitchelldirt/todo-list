@@ -1,6 +1,6 @@
 export interface toDoItem {
     title: string;
-    descripton?: string;
+    description?: string;
     dateTime?: string;
     priority?: string;
     project?: string;

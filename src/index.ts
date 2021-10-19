@@ -12,19 +12,19 @@ submitBtn.onclick = function getInputs(e) {
     e.preventDefault();
     toggleModal();
     const title = document.getElementById("title") as HTMLInputElement;
-    const descripton = document.getElementById("description") as HTMLTextAreaElement;
+    const description = document.getElementById("description") as HTMLTextAreaElement;
     const dateTime = document.getElementById("dateTime") as HTMLInputElement;
     const priority = document.getElementById("priority") as HTMLSelectElement;
     const project = document.getElementById("project") as HTMLSelectElement;
     console.log(dateTime.value)
     console.log('all clear');
-    return createObject(title.value, descripton.value, dateTime.value, priority.value, project.value);
+    return createObject(title.value, description.value, dateTime.value, priority.value, project.value);
 }
 
-function createObject(title: string, descripton: string, dateTime: string, priority: string, project: string) {
+function createObject(title: string, description: string, dateTime: string, priority: string, project: string) {
     let newObject: toDoItem = {
         title: title,
-        descripton: descripton,
+        description: description,
         dateTime: dateTime
     }
     console.log(dateTime)
@@ -40,14 +40,32 @@ function storeObject(obj: toDoItem) {
 
 function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
-    let title: HTMLElement = document.createElement('p');
-    title.textContent = array[0].title;
-    main.appendChild(title);
-    console.log('all clear');
+    main.innerHTML = ""
+    for (let obj of inbox) {
+        let container: HTMLElement = document.createElement('div') as HTMLDivElement;
+        let title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        let description: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        let dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        title.textContent = obj.title;
+        description.textContent = obj.description;
+        dueDate.textContent = obj.dateTime;      
+        container.appendChild(title);
+        container.appendChild(description);
+        container.appendChild(dueDate);
+        main.appendChild(container)
+    }
+    
+
     resetForm();
 }
 
 function resetForm() {
+    const title = document.getElementById("title") as HTMLInputElement;
+    const description = document.getElementById("description") as HTMLTextAreaElement;
+    const dateTime = document.getElementById("dateTime") as HTMLInputElement;
+    title.value = "";
+    description.value = "";
+    description.value = "";
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
 }
