@@ -44,4 +44,10 @@ function displayObjects(array: toDoItem[]) {
     title.textContent = array[0].title;
     main.appendChild(title);
     console.log('all clear');
+    resetForm();
+}
+
+function resetForm() {
+    const form = document.getElementById("modalForm") as HTMLFormElement;
+    form.reset();
 }
