@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles.scss'
 import './components/modal.ts'
 import './components/hamburgerButton.ts';
 import './components/lightModeDarkMode.ts'
@@ -78,6 +78,7 @@ function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = ""
     for (let obj of inbox) {
+        let counter: number = 1;
         let container: HTMLElement = document.createElement('div') as HTMLDivElement;
         let title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let description: HTMLElement = document.createElement('p') as HTMLParagraphElement;
@@ -91,6 +92,8 @@ function displayObjects(array: toDoItem[]) {
         container.appendChild(dueDate);
         container.appendChild(dueTime);
         main.appendChild(container)
+        counter += 1;
+        console.log(counter);
     }
     resetForm();
 }
