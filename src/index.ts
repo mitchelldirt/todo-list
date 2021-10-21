@@ -4,6 +4,7 @@ import './components/hamburgerButton.ts';
 import './components/lightModeDarkMode.ts'
 import { toDoItem } from './types';
 import { toggleModal } from './components/modal'
+import getDay from 'date-fns/getDay'
 
 let inbox: toDoItem[] = [];
 
@@ -18,16 +19,51 @@ submitBtn.onclick = function getInputs(e) {
     const project = document.getElementById("project") as HTMLSelectElement;
     console.log(dateTime.value)
     console.log('all clear');
-    return createObject(title.value, description.value, dateTime.value, priority.value, project.value);
+    return createObject(title.value, description.value, processDate(dateTime.value), priority.value, project.value);
+}
+
+function processDate(dateTime: string): string {
+    let timeDateArray: string[] = dateTime.split('T');
+    let time: string = timeDateArray[1];
+    let dateArray: string[] = timeDateArray[0].split('-');
+    let date: string = `${dateArray[1]}-${dateArray[2]}-${dateArray[0]}`;
+    const result = getDay(new Date(+dateArray[0], +dateArray[1] - 1, +dateArray[2]))
+    let day: string;
+    switch (result) {
+        case 0:
+            day = "Sunday"
+            break;
+        case 1:
+            day = "Monday"
+            break;
+        case 2:
+            day = "Tuesday"
+            break;
+        case 3:
+            day = "Wednesday"
+            break;
+        case 4:
+            day = "Thursday"
+            break;
+        case 5:
+            day = "Friday"
+            break;
+        case 6:
+            day = "Saturday"
+            break;
+    }
+    return `${day} ${date} at ${time}`
 }
 
 function createObject(title: string, description: string, dateTime: string, priority: string, project: string) {
     let newObject: toDoItem = {
         title: title,
         description: description,
-        dateTime: dateTime
+        dateTime: dateTime,
+        priority: priority,
+        project: project
     }
-    console.log(dateTime)
+    console.log(dateTime);
     console.log('all clear');
     return storeObject(newObject);
 }
@@ -46,16 +82,16 @@ function displayObjects(array: toDoItem[]) {
         let title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let description: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        let dueTime: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         title.textContent = obj.title;
         description.textContent = obj.description;
-        dueDate.textContent = obj.dateTime;      
+        dueDate.textContent = obj.dateTime;
         container.appendChild(title);
         container.appendChild(description);
         container.appendChild(dueDate);
+        container.appendChild(dueTime);
         main.appendChild(container)
     }
-    
-
     resetForm();
 }
 
