@@ -80,20 +80,26 @@ function displayObjects(array: toDoItem[]) {
     for (let obj of inbox) {
         let counter: number = 1;
         let container: HTMLElement = document.createElement('div') as HTMLDivElement;
-        let title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let description: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let dueTime: HTMLElement = document.createElement('p') as HTMLParagraphElement;
-        title.textContent = obj.title;
+        let input: HTMLElement = document.createElement('input') as HTMLInputElement;
+        let label: HTMLElement = document.createElement('label') as HTMLLabelElement;
+        input.classList.add("input");
+        input.setAttribute("type", "checkbox");
+        input.id = "" + counter;
+        label.setAttribute("for", "" + counter);
+        label.textContent = obj.title
+        container.classList.add("toDoFlex");
         description.textContent = obj.description;
         dueDate.textContent = obj.dateTime;
-        container.appendChild(title);
+        container.appendChild(input);
+        container.appendChild(label);
         container.appendChild(description);
         container.appendChild(dueDate);
         container.appendChild(dueTime);
         main.appendChild(container)
         counter += 1;
-        console.log(counter);
     }
     resetForm();
 }
