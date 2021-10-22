@@ -89,15 +89,10 @@ function displayObjects(array: toDoItem[]) {
         input.setAttribute("type", "checkbox");
         input.id = "" + counter;
         label.setAttribute("for", "" + counter);
-        label.textContent = obj.title
+        label.innerHTML = `❔${obj.title}&nbsp;&nbsp;&nbsp;&nbsp;📜${obj.description}&nbsp;&nbsp;&nbsp;&nbsp;🕘${obj.dateTime}`;
         container.classList.add("toDoFlex");
-        description.textContent = obj.description;
-        dueDate.textContent = obj.dateTime;
         container.appendChild(input);
         container.appendChild(label);
-        container.appendChild(description);
-        container.appendChild(dueDate);
-        container.appendChild(dueTime);
         main.appendChild(container)
         counter += 1;
     }
