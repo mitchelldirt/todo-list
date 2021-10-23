@@ -1,4 +1,4 @@
-import './styles.scss'
+import './styles.css'
 import './components/modal.ts'
 import './components/hamburgerButton.ts';
 import './components/lightModeDarkMode.ts'
@@ -77,19 +77,19 @@ function storeObject(obj: toDoItem) {
 function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = ""
+    let counter: number = 1;
     for (let obj of inbox) {
-        let counter: number = 1;
         let container: HTMLElement = document.createElement('div') as HTMLDivElement;
-        let description: HTMLElement = document.createElement('p') as HTMLParagraphElement;
-        let dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
-        let dueTime: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         let input: HTMLElement = document.createElement('input') as HTMLInputElement;
         let label: HTMLElement = document.createElement('label') as HTMLLabelElement;
+
         input.classList.add("input");
         input.setAttribute("type", "checkbox");
         input.id = "" + counter;
+
         label.setAttribute("for", "" + counter);
         label.innerHTML = `❔${obj.title}&nbsp;&nbsp;&nbsp;&nbsp;📜${obj.description}&nbsp;&nbsp;&nbsp;&nbsp;🕘${obj.dateTime}`;
+
         container.classList.add("toDoFlex");
         container.appendChild(input);
         container.appendChild(label);

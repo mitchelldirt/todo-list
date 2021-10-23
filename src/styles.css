@@ -1,8 +1,10 @@
-$title: "roboto-title";
-$headers: "roboto-headers";
-$text: "roboto-text";
-$lightColor: #eea47f;
-$darkColor: #00539c;
+:root {
+  --title: "roboto-title";
+  --headers: "roboto-headers";
+  --text: "roboto-text";
+  --lightColor: #eea47f;
+  --darkColor: #00539c;  
+}
 
 html,
 body {
@@ -39,43 +41,43 @@ body {
 }
 
 .trigger {
-  background-color: $lightColor;
-  color: $darkColor;
+  background-color: var(--lightColor);
+  color: var(--darkColor);
   border-radius: 25px;
   margin: 4px;
 }
 
 label {
   font-family: "roboto-text";
-    color: #eea47f;
+    color: var(--lightColor);
     font-size: .75em;
 }
 
 h1 {
   justify-self: center;
   align-self: center;
-  font-family: $title, "roboto-title";
-  color: $lightColor;
+  font-family: var(--title, "roboto-title");
+  color: var(--lightColor);
   font-size: 2em;
   margin: 4px;
   top: 0;
 }
 
 p {
-  font-family: $text;
-  color: $lightColor;
+  font-family: var(--text);
+  color: var(--lightColor);
   font-size: .75em;
 }
 
 body {
-  background-color: $darkColor;
+  background-color: var(--darkColor);
 }
 
 button {
-  font-family: $headers;
+  font-family: var(--headers);
   background-color: transparent;
   border: none;
-  color: $lightColor;
+  color: var(--lightColor);
   font-size: 1.75em;
 }
 
@@ -131,7 +133,7 @@ form {
   margin: 4px;
   height: 9px;
   width: 60px;
-  background: $lightColor;
+  background: var(--lightColor);
   border-radius: 9px;
   cursor: pointer;
   -webkit-transition: 0.25s ease-in-out;
@@ -235,7 +237,7 @@ input[type="checkbox"] {
   position: relative;
   padding-left: 35px;
   font-family: "roboto-text";
-  color: $lightColor;
+  color: var(--lightColor);
   size: .75em;
   cursor: pointer;
   user-select: all;
@@ -251,7 +253,7 @@ input[type="checkbox"] {
   display: block;
   width: 20px;
   height: 20px;
-  border: 1px solid $lightColor;
+  border: 1px solid var(--lightColor);
   position: absolute;
   left: 0;
   top: 0;
@@ -274,7 +276,7 @@ input[type="checkbox"] {
   margin-bottom: 3%;
 }
 
-.input[type="checkbox"]:checked + label::selection {
+.input[type="checkbox"]:checked + label{
   text-decoration: line-through;
 }
 
