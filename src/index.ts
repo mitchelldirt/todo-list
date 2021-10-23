@@ -15,11 +15,10 @@ submitBtn.onclick = function getInputs(e) {
     const title = document.getElementById("title") as HTMLInputElement;
     const description = document.getElementById("description") as HTMLTextAreaElement;
     const dateTime = document.getElementById("dateTime") as HTMLInputElement;
-    const priority = document.getElementById("priority") as HTMLSelectElement;
     const project = document.getElementById("project") as HTMLSelectElement;
     console.log(dateTime.value)
     console.log('all clear');
-    return createObject(title.value, description.value, processDate(dateTime.value), priority.value, project.value);
+    return createObject(title.value, description.value, processDate(dateTime.value), project.value);
 }
 
 function processDate(dateTime: string): string {
@@ -55,12 +54,12 @@ function processDate(dateTime: string): string {
     return `${day} ${date} at ${time}`
 }
 
-function createObject(title: string, description: string, dateTime: string, priority: string, project: string) {
+function createObject(title: string, description: string, dateTime: string, project: string) {
     let newObject: toDoItem = {
         title: title,
         description: description,
         dateTime: dateTime,
-        priority: priority,
+
         project: project
     }
     console.log(dateTime);
@@ -78,34 +77,41 @@ function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = ""
     let counter: number = 1;
-    for (let obj of inbox) {
-        let container: HTMLElement = document.createElement('div') as HTMLDivElement;
-        let input: HTMLElement = document.createElement('input') as HTMLInputElement;
-        let label: HTMLElement = document.createElement('label') as HTMLLabelElement;
-
-        input.classList.add("input");
-        input.setAttribute("type", "checkbox");
-        input.id = "" + counter;
-
-        label.setAttribute("for", "" + counter);
-        label.innerHTML = `❔${obj.title}&nbsp;&nbsp;&nbsp;&nbsp;📜${obj.description}&nbsp;&nbsp;&nbsp;&nbsp;🕘${obj.dateTime}`;
-
-        container.classList.add("toDoFlex");
-        container.appendChild(input);
-        container.appendChild(label);
-        main.appendChild(container)
+    for (let obj of array) {
+        const id: string = counter.toString();
+        const listItem: HTMLElement = document.createElement('li') as HTMLLIElement
+        const dueDate: HTMLElement = document.createElement('div') as HTMLDivElement;
+        const title: HTMLElement = document.createElement('div') as HTMLDivElement;
+        const check = document.createElement('img') as HTMLImageElement;
+        const edit = document.createElement('img') as HTMLImageElement;
+        const deleteBtn = document.createElement('img') as HTMLImageElement;
+check.src = "./imgs/unchecked.svg"
+check.alt = "Outline of a circle"
+edit.src = "./imgs/edit.svg"
+edit.alt = "three dots - click to edit item"
+deleteBtn.src = "./imgs/trashBin.svg"
+deleteBtn.alt = "Trash bin - deletes an item"
+        check.classList.add('svg-icon')
+        edit.classList.add('svg-icon')
+        deleteBtn.classList.add('svg-icon')
+        title.innerHTML = obj.title;
+        dueDate.innerHTML = obj.dateTime;
+        listItem.id = id;
+        listItem.classList.add("toDoItem");
+        obj.id = id;
+        listItem.appendChild(check);
+        listItem.appendChild(title);
+        listItem.appendChild(dueDate);
+        listItem.appendChild(edit);
+        listItem.appendChild(deleteBtn);
+        main.appendChild(listItem);
         counter += 1;
     }
     resetForm();
 }
 
 function resetForm() {
-    const title = document.getElementById("title") as HTMLInputElement;
-    const description = document.getElementById("description") as HTMLTextAreaElement;
-    const dateTime = document.getElementById("dateTime") as HTMLInputElement;
-    title.value = "";
-    description.value = "";
-    description.value = "";
+   
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
 }
