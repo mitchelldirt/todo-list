@@ -17,6 +17,7 @@ body {
   flex-direction: column;
   max-height: 80vh;
   overflow-y: auto;
+  height: 100%;
 }
 
 /*
@@ -315,10 +316,10 @@ input[type="checkbox"] {
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-  fill: var(--lightColor);
+  fill: #00539c;
 }
 
 .svg-icon circle {
-  stroke: var(--lightColor);
+  stroke: #00539c;
   stroke-width: 1;
 }

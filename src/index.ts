@@ -1,11 +1,18 @@
-import './styles.css'
-import './components/modal.ts'
+import './styles.css';
+import './components/modal.ts';
 import './components/hamburgerButton.ts';
-import './components/lightModeDarkMode.ts'
+import './components/lightModeDarkMode.ts';
 import { toDoItem } from './types';
-import { toggleModal } from './components/modal'
-import getDay from 'date-fns/getDay'
-
+import { toggleModal } from './components/modal';
+import getDay from 'date-fns/getDay';
+//@ts-ignore
+import checked from './imgs/checked.svg';
+//@ts-ignore
+import trashBin from './imgs/trashBin.svg';
+//@ts-ignore
+import editDots from './imgs/edit.svg';
+//@ts-ignore
+import unchecked from './imgs/unchecked.svg'
 let inbox: toDoItem[] = [];
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
@@ -85,15 +92,12 @@ function displayObjects(array: toDoItem[]) {
         const check = document.createElement('img') as HTMLImageElement;
         const edit = document.createElement('img') as HTMLImageElement;
         const deleteBtn = document.createElement('img') as HTMLImageElement;
-check.src = "./imgs/unchecked.svg"
-check.alt = "Outline of a circle"
-edit.src = "./imgs/edit.svg"
-edit.alt = "three dots - click to edit item"
-deleteBtn.src = "./imgs/trashBin.svg"
-deleteBtn.alt = "Trash bin - deletes an item"
-        check.classList.add('svg-icon')
-        edit.classList.add('svg-icon')
-        deleteBtn.classList.add('svg-icon')
+        check.src = unchecked;
+        check.alt = "Outline of a circle";
+        edit.src = editDots;
+        edit.alt = "three dots - click to edit item";
+        deleteBtn.src = trashBin;
+        deleteBtn.alt = "Trash bin - deletes an item";
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
         listItem.id = id;
@@ -111,7 +115,7 @@ deleteBtn.alt = "Trash bin - deletes an item"
 }
 
 function resetForm() {
-   
+
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
 }
