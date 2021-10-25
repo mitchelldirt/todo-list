@@ -13,6 +13,7 @@ import trashBin from './imgs/trashBin.svg';
 import editDots from './imgs/edit.svg';
 //@ts-ignore
 import unchecked from './imgs/unchecked.svg'
+
 let inbox: toDoItem[] = [];
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
