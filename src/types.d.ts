@@ -5,3 +5,5 @@ export interface toDoItem {
     project?: string;
     id?: string;
 }
+
+type SvgInHtml = HTMLElement & SVGElement;

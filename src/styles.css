@@ -316,10 +316,10 @@ input[type="checkbox"] {
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-  fill: #00539c;
+  fill: #4691f6;
 }
 
 .svg-icon circle {
-  stroke: #00539c;
+  stroke: #4691f6;
   stroke-width: 1;
 }
