@@ -64,6 +64,8 @@ function displayObjects(array: toDoItem[]) {
         const container: HTMLElement = document.createElement('div') as HTMLDivElement;
         const dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         const title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        dueDate.style.color = "black";
+        title.style.color = "black"
         const checkMarkUnchecked = unChecked();
         const edit = editButton();
         const deleteBtn = trashBin();
