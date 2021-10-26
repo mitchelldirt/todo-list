@@ -80,8 +80,9 @@ border-bottom: var(--lightColor) 1px solid;
 
 label {
   font-family: "roboto-text";
-    color: var(--lightColor);
-    font-size: .75em;
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 h1 {
