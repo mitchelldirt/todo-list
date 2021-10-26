@@ -5,8 +5,10 @@ lightDarkMode.onclick = function LMDM(e) {
     const html = document.querySelector('html');
     if (html.dataset.theme === `theme-light`) {
         html.dataset.theme = `theme-dark`;
+        lightDarkMode.textContent = "Light🌞Mode"
     } else {
         html.dataset.theme = `theme-light`;
+        lightDarkMode.textContent = "Dark🌝Mode";
     } /*
     let color1: string = document.documentElement.style.getPropertyValue('--lightColor');
     if (color1 === '#FCF6F5') {
