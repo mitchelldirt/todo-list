@@ -10,53 +10,31 @@ import unChecked from './components/unChecked';
 import editButton from './components/editButton';
 import checked from './components/checked';
 
+const html = document.querySelector('html');
+html.dataset.theme = `theme-dark`;
+
 let inbox: toDoItem[] = [];
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
-submitBtn.onclick = function getInputs(e) {
-    e.preventDefault();
-    toggleModal();
+submitBtn.onclick = function getInputs() {
     const title = document.getElementById("title") as HTMLInputElement;
     const description = document.getElementById("description") as HTMLTextAreaElement;
     const dateTime = document.getElementById("dateTime") as HTMLInputElement;
     const project = document.getElementById("project") as HTMLSelectElement;
-    console.log(dateTime.value)
-    console.log('all clear');
+    if (title.value === "" || dateTime.value === "") {
+        return;
+    }
+    toggleModal();
     return createObject(title.value, description.value, processDate(dateTime.value), project.value);
-}
+};
 
 function processDate(dateTime: string): string {
     let timeDateArray: string[] = dateTime.split('T');
     let time: string = timeDateArray[1];
     let dateArray: string[] = timeDateArray[0].split('-');
-    let date: string = `${dateArray[1]}-${dateArray[2]}-${dateArray[0]}`;
-    const result = getDay(new Date(+dateArray[0], +dateArray[1] - 1, +dateArray[2]))
-    let day: string;
-    switch (result) {
-        case 0:
-            day = "Sunday"
-            break;
-        case 1:
-            day = "Monday"
-            break;
-        case 2:
-            day = "Tuesday"
-            break;
-        case 3:
-            day = "Wednesday"
-            break;
-        case 4:
-            day = "Thursday"
-            break;
-        case 5:
-            day = "Friday"
-            break;
-        case 6:
-            day = "Saturday"
-            break;
-    }
-    return `${day} ${date} at ${time}`
-}
+    let date: string = `${dateArray[1]}/${dateArray[2]}/${dateArray[0].slice(2, 4)}`;
+    return `📅${date}⏰${time}`;
+};
 
 function createObject(title: string, description: string, dateTime: string, project: string) {
     let newObject: toDoItem = {
@@ -69,13 +47,13 @@ function createObject(title: string, description: string, dateTime: string, proj
     console.log(dateTime);
     console.log('all clear');
     return storeObject(newObject);
-}
+};
 
 function storeObject(obj: toDoItem) {
     inbox.push(obj);
     console.log('all clear');
     return displayObjects(inbox);
-}
+};
 
 function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
@@ -84,8 +62,8 @@ function displayObjects(array: toDoItem[]) {
     for (let obj of array) {
         const id: string = counter.toString();
         const container: HTMLElement = document.createElement('div') as HTMLDivElement;
-        const dueDate: HTMLElement = document.createElement('div') as HTMLDivElement;
-        const title: HTMLElement = document.createElement('div') as HTMLDivElement;
+        const dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
+        const title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         const checkMarkUnchecked = unChecked();
         const edit = editButton();
         const deleteBtn = trashBin();
@@ -103,9 +81,9 @@ function displayObjects(array: toDoItem[]) {
         counter += 1;
     }
     resetForm();
-}
+};
 
 function resetForm() {
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
-}
+};

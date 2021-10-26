@@ -1,9 +1,17 @@
-:root {
+:root[data-theme="theme-light"] {
   --title: "roboto-title";
   --headers: "roboto-headers";
   --text: "roboto-text";
-  --lightColor: #eea47f;
-  --darkColor: #00539c;  
+  --darkColor: #FCF6F5;
+  --lightColor: #7b9acc;
+}
+
+:root[data-theme="theme-dark"] {
+  --title: "roboto-title";
+  --headers: "roboto-headers";
+  --text: "roboto-text";
+  --lightColor: #FCF6F5;
+  --darkColor: #7b9acc;
 }
 
 html,
@@ -85,6 +93,8 @@ h1 {
   margin: 4px;
   top: 0;
 }
+
+
 
 p {
   font-family: var(--text);
@@ -306,20 +316,4 @@ input[type="checkbox"] {
 .thing::after {
   border: none;
   left: unset;
-}
-
-.svg-icon {
-  width: 1em;
-  height: 1em;
-}
-
-.svg-icon path,
-.svg-icon polygon,
-.svg-icon rect {
-  fill: #4691f6;
-}
-
-.svg-icon circle {
-  stroke: #4691f6;
-  stroke-width: 1;
 }
