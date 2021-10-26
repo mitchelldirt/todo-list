@@ -323,3 +323,9 @@ input[type="checkbox"] {
   stroke: #4691f6;
   stroke-width: 1;
 }
+
+.delTrash {
+  background-image: url('./imgs/trashBin.svg');
+  width: 25px;
+  height: 25px;
+}

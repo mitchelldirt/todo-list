@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "image-webpack-loader": "^8.0.1",
+    "svg-url-loader": "^7.1.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.3"
   },

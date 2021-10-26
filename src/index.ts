@@ -87,7 +87,7 @@ function displayObjects(array: toDoItem[]) {
     let counter: number = 1;
     for (let obj of array) {
         const id: string = counter.toString();
-        const listItem: HTMLElement = document.createElement('li') as HTMLLIElement
+        const container: HTMLElement = document.createElement('div') as HTMLDivElement;
         const dueDate: HTMLElement = document.createElement('div') as HTMLDivElement;
         const title: HTMLElement = document.createElement('div') as HTMLDivElement;
         const check = document.createElement('img') as HTMLImageElement;
@@ -101,15 +101,15 @@ function displayObjects(array: toDoItem[]) {
         deleteBtn.alt = "Trash bin - deletes an item";
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
-        listItem.id = id;
-        listItem.classList.add("toDoItem");
+        container.id = id;
+        container.classList.add("toDoItem");
         obj.id = id;
-        listItem.appendChild(check);
-        listItem.appendChild(title);
-        listItem.appendChild(dueDate);
-        listItem.appendChild(edit);
-        listItem.appendChild(deleteBtn);
-        main.appendChild(listItem);
+        container.appendChild(check);
+        container.appendChild(title);
+        container.appendChild(dueDate);
+        container.appendChild(edit);
+        container.appendChild(deleteBtn);
+        main.appendChild(container);
         counter += 1;
     }
     resetForm();
