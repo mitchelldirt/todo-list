@@ -5,14 +5,10 @@ import './components/lightModeDarkMode.ts';
 import { toDoItem } from './types';
 import { toggleModal } from './components/modal';
 import getDay from 'date-fns/getDay';
-//@ts-ignore
-import checked from './imgs/checked.svg';
-//@ts-ignore
-import trashBin from './imgs/trashBin.svg';
-//@ts-ignore
-import editDots from './imgs/edit.svg';
-//@ts-ignore
-import unchecked from './imgs/unchecked.svg'
+import trashBin from './components/trashBin';
+import unChecked from './components/unChecked';
+import editButton from './components/editButton';
+import checked from './components/checked';
 
 let inbox: toDoItem[] = [];
 
@@ -90,21 +86,15 @@ function displayObjects(array: toDoItem[]) {
         const container: HTMLElement = document.createElement('div') as HTMLDivElement;
         const dueDate: HTMLElement = document.createElement('div') as HTMLDivElement;
         const title: HTMLElement = document.createElement('div') as HTMLDivElement;
-        const check = document.createElement('img') as HTMLImageElement;
-        const edit = document.createElement('img') as HTMLImageElement;
-        const deleteBtn = document.createElement('img') as HTMLImageElement;
-        check.src = unchecked;
-        check.alt = "Outline of a circle";
-        edit.src = editDots;
-        edit.alt = "three dots - click to edit item";
-        deleteBtn.src = trashBin;
-        deleteBtn.alt = "Trash bin - deletes an item";
+        const checkMarkUnchecked = unChecked();
+        const edit = editButton();
+        const deleteBtn = trashBin();
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
         container.id = id;
         container.classList.add("toDoItem");
         obj.id = id;
-        container.appendChild(check);
+        container.appendChild(checkMarkUnchecked);
         container.appendChild(title);
         container.appendChild(dueDate);
         container.appendChild(edit);
@@ -116,7 +106,6 @@ function displayObjects(array: toDoItem[]) {
 }
 
 function resetForm() {
-
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
 }
