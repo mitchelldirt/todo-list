@@ -14,12 +14,14 @@ submitBtn.onclick = function getInputs(e) {
     const title = document.getElementById("title") as HTMLInputElement;
     const description = document.getElementById("description") as HTMLTextAreaElement;
     const dateTime = document.getElementById("dateTime") as HTMLInputElement;
-    const project = document.getElementById("project") as HTMLSelectElement;
+    const select = document.getElementById("project") as HTMLSelectElement;
+    const project = select.options[select.selectedIndex].value;
+    console.log(project)
     if (title.value === "" || dateTime.value === "") {
         return;
     }
     toggleModal();
-    return createObject(title.value, description.value, processDate(dateTime.value), project.value);
+    return createObject(title.value, description.value, processDate(dateTime.value), project);
 };
 
 function processDate(dateTime: string): string {
@@ -41,9 +43,8 @@ function createObject(title: string, description: string, dateTime: string, proj
 };
 
 function storeObject(obj: toDoItem) {
-    // grab the property obj.project once you fix the way this functions
-    inbox.push(obj);
-    return displayObjects(inbox);
+    projects[+obj.project].push(obj)
+    return displayObjects(projects[+obj.project]);
 };
 
 function displayObjects(array: toDoItem[]) {
