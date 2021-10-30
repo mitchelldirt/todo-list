@@ -6,4 +6,9 @@ export interface toDoItem {
     id?: string;
 }
 
+export interface toDoItemArray {
+    value: string;
+    array: toDoItem[];
+}
+
 type SvgInHtml = HTMLElement & SVGElement;

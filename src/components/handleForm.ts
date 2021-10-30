@@ -1,17 +1,19 @@
 import { toDoItem } from '../types';
+import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
+import { returnProjects } from '../components/handleProjects';
+import '../components/handleProjects';
+
 import trashBin from '../components/trashBin';
 import unChecked from '../components/unChecked';
 import editButton from '../components/editButton';
 import checked from '../components/checked';
 
-let inbox: toDoItem[] = [];
-let sample: toDoItem[] = [];
-let projects: toDoItem[][] = [inbox, sample];
+let projects = returnProjects()
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
 submitBtn.onclick = function getInputs(e) {
-    const title = document.getElementById("title") as HTMLInputElement;
+    const title = document.getElementById("title") as HTMLInputElement; 
     const description = document.getElementById("description") as HTMLTextAreaElement;
     const dateTime = document.getElementById("dateTime") as HTMLInputElement;
     const select = document.getElementById("project") as HTMLSelectElement;
@@ -43,8 +45,8 @@ function createObject(title: string, description: string, dateTime: string, proj
 };
 
 function storeObject(obj: toDoItem) {
-    projects[+obj.project].push(obj)
-    return displayObjects(projects[+obj.project]);
+    projects[+obj.project].array.push(obj)
+    return displayObjects(projects[+obj.project].array);
 };
 
 function displayObjects(array: toDoItem[]) {

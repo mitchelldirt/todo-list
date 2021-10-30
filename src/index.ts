@@ -3,6 +3,7 @@ import './components/modal.ts';
 import './components/hamburgerButton.ts';
 import './components/lightModeDarkMode.ts';
 import './components/handleForm';
+import './components/handleProjects';
 import { toDoItem } from './types';
 import { toggleModal } from './components/modal';
 
