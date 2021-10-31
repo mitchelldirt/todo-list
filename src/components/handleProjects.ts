@@ -1,5 +1,6 @@
 import { toDoItem } from "../types";
 import { toDoItemArray } from "../types";
+import { displayObjects } from '../components/handleForm'
 
 let projects: toDoItemArray[] = [];
 
@@ -7,11 +8,13 @@ const projectBtn = document.getElementById('projects') as HTMLButtonElement;
 projectBtn.onclick = () => {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = "";
-    let counter: number = 0;
     for (let project of projects) {
         let element = document.createElement('button');
         element.innerHTML = project.value;
         element.textContent = project.value;
+        element.onclick = () => {
+            return displayObjects(project.array)
+        }
         console.log(project.value)
         main.appendChild(element);
     }

@@ -45,12 +45,13 @@ function createObject(title: string, description: string, dateTime: string, proj
 
 function storeObject(obj: toDoItem) {
     projects[+obj.project].array.push(obj)
+    // changeCurrentProject changes which <option> element has the selected attribute.
     changeCurrentProject(obj.project);
     return displayObjects(projects[+obj.project].array);
 
 };
 
-function displayObjects(array: toDoItem[]) {
+export function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = ""
     let counter: number = 1;
