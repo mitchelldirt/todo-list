@@ -1,8 +1,7 @@
 import { toDoItem } from '../types';
 import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
-import { returnProjects } from '../components/handleProjects';
-import '../components/handleProjects';
+import { returnProjects, changeCurrentProject } from '../components/handleProjects';
 
 import trashBin from '../components/trashBin';
 import unChecked from '../components/unChecked';
@@ -46,7 +45,9 @@ function createObject(title: string, description: string, dateTime: string, proj
 
 function storeObject(obj: toDoItem) {
     projects[+obj.project].array.push(obj)
+    changeCurrentProject(obj.project);
     return displayObjects(projects[+obj.project].array);
+
 };
 
 function displayObjects(array: toDoItem[]) {

@@ -318,3 +318,9 @@ input[type="checkbox"] {
   border: none;
   left: unset;
 }
+
+.projectLabelFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
