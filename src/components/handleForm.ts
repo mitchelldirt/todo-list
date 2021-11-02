@@ -3,7 +3,7 @@ import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
 import { returnProjects, changeCurrentProject } from '../components/handleProjects';
 
-import trashBin from '../components/trashBin';
+import trashBin from '../components/deleteButton'
 import unChecked from '../components/unChecked';
 import editButton from '../components/editButton';
 import checked from '../components/checked';

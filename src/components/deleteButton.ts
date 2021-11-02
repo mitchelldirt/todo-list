@@ -3,5 +3,6 @@ export default function trashBin(): HTMLSpanElement {
     i.classList.add('far')
     i.classList.add('fa-trash-alt')
     i.style.color = "white"
+    console.log(i);
     return i;
 }
