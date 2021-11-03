@@ -3,7 +3,7 @@ import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
 import { returnProjects, changeCurrentProject } from '../components/handleProjects';
 
-import trashBin from '../components/deleteButton'
+import trashBin, { addDeleteFunctionality } from '../components/deleteButton'
 import unChecked from '../components/unChecked';
 import editButton from '../components/editButton';
 import checked from '../components/checked';
@@ -57,7 +57,7 @@ export function displayObjects(array: toDoItem[]) {
     let counter: number = 1;
     for (let obj of array) {
         const id: string = counter.toString();
-        const container: HTMLElement = document.createElement('div') as HTMLDivElement;
+        const container = document.createElement('li') as HTMLLIElement;
         const dueDate: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         const title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         dueDate.style.color = "black";
@@ -65,9 +65,16 @@ export function displayObjects(array: toDoItem[]) {
         const checkMarkUnchecked = unChecked();
         const edit = editButton();
         const deleteBtn = trashBin();
+        container.setAttribute("data-key", `${obj.project}`); 
+        deleteBtn.onclick = () => {
+            let project = deleteBtn.parentElement.getAttribute("data-key")
+            let id = deleteBtn.parentElement.id;
+            console.log(`${project} + ${id}`);
+        }
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
         container.id = id;
+        
         container.classList.add("toDoItem");
         obj.id = id;
         container.appendChild(checkMarkUnchecked);
@@ -75,7 +82,9 @@ export function displayObjects(array: toDoItem[]) {
         container.appendChild(dueDate);
         container.appendChild(edit);
         container.appendChild(deleteBtn);
+       
         main.appendChild(container);
+        console.log(deleteBtn.parentElement);
         counter += 1;
     }
     resetForm();
