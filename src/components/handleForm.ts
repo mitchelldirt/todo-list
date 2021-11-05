@@ -3,12 +3,12 @@ import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
 import { returnProjects, changeCurrentProject } from '../components/handleProjects';
 
-import trashBin, { addDeleteFunctionality } from '../components/deleteButton'
+import trashBin from '../components/deleteButton'
 import unChecked from '../components/unChecked';
 import editButton from '../components/editButton';
 import checked from '../components/checked';
 
-let projects = returnProjects()
+let projects: toDoItemArray[] = returnProjects()
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
 submitBtn.onclick = function getInputs(e) {
@@ -63,18 +63,14 @@ export function displayObjects(array: toDoItem[]) {
         dueDate.style.color = "black";
         title.style.color = "black";
         const checkMarkUnchecked = unChecked();
+        checkOffItem(checkMarkUnchecked);
         const edit = editButton();
         const deleteBtn = trashBin();
+        addDeleteFunctionality(deleteBtn);
         container.setAttribute("data-key", `${obj.project}`); 
-        deleteBtn.onclick = () => {
-            let project = deleteBtn.parentElement.getAttribute("data-key")
-            let id = deleteBtn.parentElement.id;
-            console.log(`${project} + ${id}`);
-        }
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
         container.id = id;
-        
         container.classList.add("toDoItem");
         obj.id = id;
         container.appendChild(checkMarkUnchecked);
@@ -94,3 +90,31 @@ function resetForm() {
     const form = document.getElementById("modalForm") as HTMLFormElement;
     form.reset();
 };
+
+function addDeleteFunctionality(element: HTMLSpanElement) {
+    element.onclick = () => {
+        let project: number = +element.parentElement.getAttribute("data-key")
+        let id = element.parentElement.id;
+        for (let item of projects[project].array) {
+            if (item.id === id) {
+                let index: number = projects[project].array.indexOf(item);
+                projects[project].array.splice(index, 1);
+                displayObjects(projects[project].array);
+            }
+        }
+        console.log(`${project} + ${id}`);
+    }
+    }
+
+function checkOffItem(element: HTMLSpanElement) {
+    element.onclick = () => {
+        element.replaceWith(checked())
+        let project: number = +element.parentElement.getAttribute("data-key");
+        let id = element.parentElement.id;
+        for (let item of projects[project].array) {
+            if (item.id === id) {
+                let index: number = projects[project].array.indexOf(item);
+            }
+        }
+    }
+}
