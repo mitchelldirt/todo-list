@@ -4,6 +4,7 @@ export interface toDoItem {
     dateTime?: string;
     project?: string;
     id?: string;
+    checked: boolean;
 }
 
 export interface toDoItemArray {

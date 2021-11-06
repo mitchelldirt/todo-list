@@ -5,8 +5,3 @@ export default function trashBin(): HTMLSpanElement {
     i.style.color = "white";
     return i;
 }
-
-export function addDeleteFunctionality(btn: HTMLSpanElement): Event {
-   
-    return;
-};

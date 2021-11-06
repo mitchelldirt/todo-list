@@ -22,7 +22,7 @@ submitBtn.onclick = function getInputs(e) {
         return;
     }
     toggleModal();
-    return createObject(title.value, description.value, processDate(dateTime.value), project);
+    return createObject(title.value, description.value, processDate(dateTime.value), project, false);
 };
 
 function processDate(dateTime: string): string {
@@ -33,12 +33,13 @@ function processDate(dateTime: string): string {
     return `📅${date}⏰${time}`;
 };
 
-function createObject(title: string, description: string, dateTime: string, project: string) {
+function createObject(title: string, description: string, dateTime: string, project: string, checked: boolean) {
     let newObject: toDoItem = {
         title: title,
         description: description,
         dateTime: dateTime,
-        project: project
+        project: project,
+        checked: checked
     }
     return storeObject(newObject);
 };
@@ -62,23 +63,29 @@ export function displayObjects(array: toDoItem[]) {
         const title: HTMLElement = document.createElement('p') as HTMLParagraphElement;
         dueDate.style.color = "black";
         title.style.color = "black";
-        const checkMarkUnchecked = unChecked();
-        checkOffItem(checkMarkUnchecked);
         const edit = editButton();
         const deleteBtn = trashBin();
         addDeleteFunctionality(deleteBtn);
+        // Data-key lets you know which project you're using
         container.setAttribute("data-key", `${obj.project}`); 
         title.innerHTML = obj.title;
         dueDate.innerHTML = obj.dateTime;
         container.id = id;
         container.classList.add("toDoItem");
         obj.id = id;
-        container.appendChild(checkMarkUnchecked);
+        if (obj.checked === false) {
+            const checkBox = unChecked();
+            checkOffItem(checkBox);
+            container.appendChild(checkBox);
+        } else {
+            const checkBox = checked();
+            checkOffItem(checkBox);
+            container.appendChild(checkBox);
+        }
         container.appendChild(title);
         container.appendChild(dueDate);
         container.appendChild(edit);
         container.appendChild(deleteBtn);
-       
         main.appendChild(container);
         console.log(deleteBtn.parentElement);
         counter += 1;
@@ -108,13 +115,18 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
 
 function checkOffItem(element: HTMLSpanElement) {
     element.onclick = () => {
-        element.replaceWith(checked())
         let project: number = +element.parentElement.getAttribute("data-key");
         let id = element.parentElement.id;
         for (let item of projects[project].array) {
             if (item.id === id) {
                 let index: number = projects[project].array.indexOf(item);
+                if (projects[project].array[index].checked === false) {
+                    projects[project].array[index].checked = true;
+                } else {
+                    projects[project].array[index].checked = false;
+                }
             }
         }
+        displayObjects(projects[project].array)
     }
 }
