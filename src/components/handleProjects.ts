@@ -1,6 +1,7 @@
 import { toDoItem } from "../types";
 import { toDoItemArray } from "../types";
 import { displayObjects } from '../components/handleForm'
+import { add } from "date-fns";
 
 let projects: toDoItemArray[] = [];
 
@@ -8,6 +9,12 @@ const projectBtn = document.getElementById('projects') as HTMLButtonElement;
 projectBtn.onclick = () => {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = "";
+    let addProject = document.createElement('button') as HTMLButtonElement;
+    addProject.onclick = () => {
+        let container = document.createElement('div');
+        let input = document.createElement('input') as HTMLInputElement;
+        let submitButton = document.createElement('button') as HTMLButtonElement;
+    }
     for (let project of projects) {
         let element = document.createElement('button');
         element.innerHTML = project.value;

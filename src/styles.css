@@ -14,8 +14,18 @@
   --darkColor: #7b9acc;
 }
 
-html,
-body {
+/*
+* {
+  outline: red 1px solid;
+}
+*/
+
+html {
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
   overflow-x: hidden;
 }
 
@@ -44,8 +54,8 @@ width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
-border-top: var(--lightColor) 1px solid;
 border-bottom: var(--lightColor) 1px solid;
+gap: 2%;
 }
 
 @font-face {
@@ -129,7 +139,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 3%;
+  border-bottom: 1px solid var(--lightColor);
 }
 
 form {
@@ -152,9 +162,9 @@ form {
 }
 
 #header {
+  border-bottom: var(--lightColor) 1px solid;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3%;
 }
 
 #nav-icon1 span {

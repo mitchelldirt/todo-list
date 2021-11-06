@@ -21,6 +21,11 @@ submitBtn.onclick = function getInputs(e) {
     if (title.value === "" || dateTime.value === "") {
         return;
     }
+    if (title.value.length > 15) {
+        let titleArray = title.value.split('');
+        titleArray.splice(13, 3, '...');
+        title.value = titleArray.join('');
+    }
     toggleModal();
     return createObject(title.value, description.value, processDate(dateTime.value), project, false);
 };
@@ -82,6 +87,16 @@ export function displayObjects(array: toDoItem[]) {
             checkOffItem(checkBox);
             container.appendChild(checkBox);
         }
+
+        if (obj.checked === true) {
+            title.style.textDecoration = 'line-through';
+            title.style.color = 'darkGray';
+            dueDate.style.textDecoration = 'line-through';
+            dueDate.style.color = 'darkGray';
+        }
+        title.style.width = '33%';
+        edit.style.marginLeft = 'auto';
+        dueDate.style.marginLeft = 'auto';
         container.appendChild(title);
         container.appendChild(dueDate);
         container.appendChild(edit);
