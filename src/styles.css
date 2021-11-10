@@ -334,3 +334,18 @@ input[type="checkbox"] {
   flex-direction: row;
   align-items: center;
 }
+
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.projectFlex {
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+}

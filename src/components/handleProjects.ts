@@ -2,6 +2,7 @@ import { toDoItem } from "../types";
 import { toDoItemArray } from "../types";
 import { displayObjects } from '../components/handleForm'
 import { add } from "date-fns";
+import trashBin from '../components/deleteButton';
 
 let projects: toDoItemArray[] = [];
 
@@ -10,18 +11,24 @@ const projectBtn = document.getElementById('projects') as HTMLButtonElement;
 projectBtn.onclick = () => {
     const main: HTMLElement = document.getElementById('content');
     main.innerHTML = "";
+    let container = document.createElement('div');
+    container.classList.add('projectContainer');
     let addProject: HTMLButtonElement = createProjectButton();
-    main.appendChild(addProject);
+    container.appendChild(addProject);
     for (let project of projects) {
+        let flex = document.createElement('div') as HTMLDivElement;
+        flex.classList.add('projectFlex');
+        let deleteButton = trashBin();
+        flex.appendChild(deleteButton);
         let element = document.createElement('button');
         element.innerHTML = project.value;
-        element.textContent = project.value;
         element.onclick = () => {
             return displayObjects(project.array)
         }
-        console.log(project.value)
-        main.appendChild(element);
+        flex.appendChild(element);
+        container.appendChild(flex);
     }
+    main.appendChild(container);
     let mainNav: HTMLElement = document.querySelector('.nav-section')
     mainNav.classList.toggle('show-nav')
 }
