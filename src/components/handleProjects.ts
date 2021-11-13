@@ -15,22 +15,23 @@ projectBtn.onclick = () => {
     container.classList.add('projectContainer');
     let addProject: HTMLButtonElement = createProjectButton();
     container.appendChild(addProject);
-    for (let project of projects) {
+    for (let i = 1; i < projects.length; i++) {
         let flex = document.createElement('div') as HTMLDivElement;
         flex.classList.add('projectFlex');
         let deleteButton = trashBin();
+        deleteButton.style.alignSelf = 'center';
         flex.appendChild(deleteButton);
         let element = document.createElement('button');
-        element.innerHTML = project.value;
+        element.innerHTML = projects[i].value;
         element.onclick = () => {
-            return displayObjects(project.array)
+            return displayObjects(projects[i].array);
         }
         flex.appendChild(element);
         container.appendChild(flex);
     }
     main.appendChild(container);
-    let mainNav: HTMLElement = document.querySelector('.nav-section')
-    mainNav.classList.toggle('show-nav')
+    let mainNav: HTMLElement = document.querySelector('.nav-section');
+    mainNav.classList.toggle('show-nav');
 }
 
 //Create a toDoItemArray type object.
@@ -77,7 +78,7 @@ function createProjectButton() {
     btn.innerHTML = 'Create Project';
     btn.onclick = () => {
         let projectName: string = prompt('Enter the name of your project');
-        if (projectName !== '') {
+        if (projectName.length > 0) {
             factoryToDoItemArray(projectName);
             projectBtn.click();
             let mainNav: HTMLElement = document.querySelector('.nav-section')
