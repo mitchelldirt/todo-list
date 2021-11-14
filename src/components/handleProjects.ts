@@ -20,6 +20,14 @@ projectBtn.onclick = () => {
         flex.classList.add('projectFlex');
         let deleteButton = trashBin();
         deleteButton.style.alignSelf = 'center';
+        deleteButton.id = i.toString()
+        deleteButton.onclick = () => {
+            projects.splice(+deleteButton.id, 1);
+            projectBtn.click();
+            let mainNav: HTMLElement = document.querySelector('.nav-section')
+            mainNav.classList.toggle('show-nav')
+            factoryToDoItemArray('');
+        }
         flex.appendChild(deleteButton);
         let element = document.createElement('button');
         element.innerHTML = projects[i].value;
@@ -41,7 +49,9 @@ function factoryToDoItemArray(input: string) {
         value : input,
         array: array
     }
-    projects.push(arrayObj);
+    if (arrayObj.value.length > 0) {
+        projects.push(arrayObj);
+    }
     let selectElement = document.getElementById('project');
     selectElement.innerHTML = '';
     let valueCounter: number = 0;
