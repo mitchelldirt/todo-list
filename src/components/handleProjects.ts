@@ -69,6 +69,9 @@ factoryToDoItemArray('sample');
 
 // Used in the handle form section to select which project is needed.
 export function returnProjects() {
+    for (let project of projects) {
+        sortProjectArray(project.array);
+    }
     return projects;
 }
 
@@ -96,4 +99,13 @@ function createProjectButton() {
         }
     }
     return btn;
+}
+
+// nested for loop?
+function sortProjectArray(array: toDoItem[]) {
+    let newArray: toDoItem[] = [];
+    for (let i = 0; i < array.length; i++) {
+        
+    }
+    return newArray;
 }
