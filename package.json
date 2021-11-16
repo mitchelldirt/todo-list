@@ -6,6 +6,7 @@
   "dependencies": {
     "css-loader": "^6.2.0",
     "date-fns": "^2.25.0",
+    "lodash": "^4.17.21",
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.2.1",

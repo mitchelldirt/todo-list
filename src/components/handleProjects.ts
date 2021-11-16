@@ -3,6 +3,7 @@ import { toDoItemArray } from "../types";
 import { displayObjects } from '../components/handleForm'
 import { add } from "date-fns";
 import trashBin from '../components/deleteButton';
+const _ = require('lodash');
 
 let projects: toDoItemArray[] = [];
 
@@ -69,10 +70,12 @@ factoryToDoItemArray('sample');
 
 // Used in the handle form section to select which project is needed.
 export function returnProjects() {
+    let sortedProjects: toDoItemArray[] = [];
     for (let project of projects) {
-        sortProjectArray(project.array);
+        let item: toDoItemArray = sortProjectArray(project);
+        sortedProjects.push(item);
     }
-    return projects;
+    return sortedProjects;
 }
 
 export function changeCurrentProject(projectIndex: string) {
@@ -101,11 +104,25 @@ function createProjectButton() {
     return btn;
 }
 
-// nested for loop?
-function sortProjectArray(array: toDoItem[]) {
-    let newArray: toDoItem[] = [];
-    for (let i = 0; i < array.length; i++) {
-        
+// not working currently. Might need to simplify
+function sortProjectArray(input: toDoItemArray): toDoItemArray {
+    let obj = input;
+    let newArray: toDoItemArray = _.cloneDeep(input);
+    const counter: number = obj.array.length
+    for (let i = 0; i < counter; i++) {
+        if (newArray.array.length === counter) {
+            return newArray;
+        } else if (newArray.array[0]) {
+            let onlyNumbersDate: string = obj.array[i].dateTime.replace(/[^\d.-]/g, '');
+            for (let i = 0; i < obj.array.length; i++) {
+                if (onlyNumbersDate < newArray.array[i].dateTime.replace(/[^\d.-]/g, '')) {
+                    newArray.array.splice(i, 0, obj.array[i]);
+                    break;
+                }
+            }
+        } else {
+            newArray.array.push(obj.array[0]);
+        }
     }
-    return newArray;
+    return newArray
 }
