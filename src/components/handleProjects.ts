@@ -70,12 +70,12 @@ factoryToDoItemArray('sample');
 
 // Used in the handle form section to select which project is needed.
 export function returnProjects() {
-    let sortedProjects: toDoItemArray[] = [];
+    /*let sortedProjects: toDoItemArray[] = [];
     for (let project of projects) {
         let item: toDoItemArray = sortProjectArray(project);
         sortedProjects.push(item);
-    }
-    return sortedProjects;
+    }*/
+    return projects;
 }
 
 export function changeCurrentProject(projectIndex: string) {
@@ -104,7 +104,8 @@ function createProjectButton() {
     return btn;
 }
 
-// not working currently. Might need to simplify
+// Sort project array by datetime and then style it using processDate()
+/*
 function sortProjectArray(input: toDoItemArray): toDoItemArray {
     let obj = input;
     let newArray: toDoItemArray = _.cloneDeep(input);
@@ -126,3 +127,4 @@ function sortProjectArray(input: toDoItemArray): toDoItemArray {
     }
     return newArray
 }
+*/

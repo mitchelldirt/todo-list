@@ -1,7 +1,7 @@
 export interface toDoItem {
     title: string;
     description?: string;
-    dateTime?: string;
+    dateTime?: Date;
     project?: string;
     id?: string;
     checked: boolean;

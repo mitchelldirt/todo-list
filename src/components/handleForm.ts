@@ -14,11 +14,12 @@ const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButto
 submitBtn.onclick = function getInputs(e) {
     const title = document.getElementById("title") as HTMLInputElement; 
     const description = document.getElementById("description") as HTMLTextAreaElement;
-    const dateTime = document.getElementById("dateTime") as HTMLInputElement;
+    let date = document.getElementById("dateTime") as HTMLInputElement;
+    let dateTime: Date = new Date(date.value);
     const select = document.getElementById("project") as HTMLSelectElement;
     const project = select.options[select.selectedIndex].value;
     console.log(project)
-    if (title.value === "" || dateTime.value === "") {
+    if (title.value === "" || date.value === "") {
         return;
     }
     if (title.value.length > 15) {
@@ -27,7 +28,7 @@ submitBtn.onclick = function getInputs(e) {
         title.value = titleArray.join('');
     }
     toggleModal();
-    return createObject(title.value, description.value, processDate(dateTime.value), project, false);
+    return createObject(title.value, description.value, dateTime, project, false);
 };
 
 function processDate(dateTime: string): string {
@@ -38,7 +39,7 @@ function processDate(dateTime: string): string {
     return `📅${date}⏰${time}`;
 };
 
-function createObject(title: string, description: string, dateTime: string, project: string, checked: boolean) {
+function createObject(title: string, description: string, dateTime: Date, project: string, checked: boolean) {
     let newObject: toDoItem = {
         title: title,
         description: description,
@@ -74,7 +75,10 @@ export function displayObjects(array: toDoItem[]) {
         // Data-key lets you know which project you're using
         container.setAttribute("data-key", `${obj.project}`); 
         title.innerHTML = obj.title;
-        dueDate.innerHTML = obj.dateTime;
+        //convert the date to a string first
+        console.log(obj.dateTime);
+        let date: string = obj.dateTime.toISOString()
+        dueDate.innerHTML = processDate(date);
         container.id = id;
         container.classList.add("toDoItem");
         obj.id = id;
