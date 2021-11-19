@@ -104,27 +104,25 @@ function createProjectButton() {
     return btn;
 }
 
-// Sort project array by datetime and then style it using processDate()
+// Sort project array by datetime using date-fns and then style it using processDate()
+
+// The below is a good starting point.
 /*
 function sortProjectArray(input: toDoItemArray): toDoItemArray {
-    let obj = input;
-    let newArray: toDoItemArray = _.cloneDeep(input);
-    const counter: number = obj.array.length
-    for (let i = 0; i < counter; i++) {
-        if (newArray.array.length === counter) {
-            return newArray;
-        } else if (newArray.array[0]) {
-            let onlyNumbersDate: string = obj.array[i].dateTime.replace(/[^\d.-]/g, '');
-            for (let i = 0; i < obj.array.length; i++) {
-                if (onlyNumbersDate < newArray.array[i].dateTime.replace(/[^\d.-]/g, '')) {
-                    newArray.array.splice(i, 0, obj.array[i]);
-                    break;
-                }
-            }
-        } else {
-            newArray.array.push(obj.array[0]);
-        }
-    }
-    return newArray
+    for (let date of dates) {
+//if there's a value in the first position
+	if (newDateArray[0] {
+for (let newDate of newDateArray) {
+	if (isBefore(date, newDate) {
+	let index = indexOf(newDate);
+	newDateArray.splice(index, 0, date);
+	break;
+} else {
+continue;
+}
+}
+} else {
+newDateArray.push(date)
+}
 }
 */
