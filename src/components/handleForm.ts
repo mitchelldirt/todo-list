@@ -1,7 +1,7 @@
 import { toDoItem } from '../types';
 import { toDoItemArray } from '../types';
 import { toggleModal } from '../components/modal';
-import { returnProjects, changeCurrentProject } from '../components/handleProjects';
+import { returnProjects, changeCurrentProject, sortProjectArray } from '../components/handleProjects';
 
 import trashBin from '../components/deleteButton'
 import unChecked from '../components/unChecked';
@@ -51,12 +51,21 @@ function createObject(title: string, description: string, dateTime: Date, projec
 };
 
 function storeObject(obj: toDoItem) {
-    projects[+obj.project].array.push(obj)
+    projects[+obj.project].array.push(obj);
     // changeCurrentProject changes which <option> element has the selected attribute.
+    sortProjects(projects)
     changeCurrentProject(obj.project);
-    return displayObjects(projects[+obj.project].array);
-
+    return displayObjects(projects[+obj.project].array); 
 };
+
+function sortProjects(projectArray: toDoItemArray[]) {
+    let sortedProjects: toDoItemArray[] = [];
+    for (let project of projectArray) {
+        let item: toDoItemArray = sortProjectArray(project);
+        sortedProjects.push(item);
+    }
+    projects = sortedProjects;
+}
 
 export function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById('content');
@@ -148,4 +157,8 @@ function checkOffItem(element: HTMLSpanElement) {
         }
         displayObjects(projects[project].array)
     }
+}
+
+export function updateProjects() {
+    return projects;
 }

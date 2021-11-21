@@ -8,7 +8,7 @@ import { toDoItem } from './types';
 import { toggleModal } from './components/modal';
 import { displayObjects } from "./components/handleForm";
 import { changeCurrentProject, returnProjects } from "./components/handleProjects";
-
+import { toDoItemArray } from "./types";
 
 const html = document.querySelector('html');
 html.dataset.theme = `theme-dark`;

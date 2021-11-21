@@ -1,9 +1,10 @@
 import { toDoItem } from "../types";
 import { toDoItemArray } from "../types";
-import { displayObjects } from '../components/handleForm'
-import { add } from "date-fns";
+import { displayObjects, updateProjects } from '../components/handleForm'
+import { add, isBefore } from "date-fns";
 import trashBin from '../components/deleteButton';
 const _ = require('lodash');
+
 
 let projects: toDoItemArray[] = [];
 
@@ -47,7 +48,7 @@ projectBtn.onclick = () => {
 function factoryToDoItemArray(input: string) {
     let array: toDoItem[] = []
     let arrayObj: toDoItemArray = {
-        value : input,
+        value: input,
         array: array
     }
     if (arrayObj.value.length > 0) {
@@ -70,11 +71,6 @@ factoryToDoItemArray('sample');
 
 // Used in the handle form section to select which project is needed.
 export function returnProjects() {
-    /*let sortedProjects: toDoItemArray[] = [];
-    for (let project of projects) {
-        let item: toDoItemArray = sortProjectArray(project);
-        sortedProjects.push(item);
-    }*/
     return projects;
 }
 
@@ -107,22 +103,32 @@ function createProjectButton() {
 // Sort project array by datetime using date-fns and then style it using processDate()
 
 // The below is a good starting point.
-/*
-function sortProjectArray(input: toDoItemArray): toDoItemArray {
-    for (let date of dates) {
-//if there's a value in the first position
-	if (newDateArray[0] {
-for (let newDate of newDateArray) {
-	if (isBefore(date, newDate) {
-	let index = indexOf(newDate);
-	newDateArray.splice(index, 0, date);
-	break;
-} else {
-continue;
-}
-}
-} else {
-newDateArray.push(date)
-}
-}
-*/
+
+export function sortProjectArray(input: toDoItemArray): toDoItemArray {
+    projects = updateProjects();
+    let copyOfArray: toDoItem[] = input.array.slice(0);
+    let newToDoItemArray: toDoItemArray = {
+        value: input.value,
+        array: []
+    }
+    for (let date of input.array) {
+        //if there's a value in the first position
+        if (newToDoItemArray.array[0]) {
+            for (let newDate of copyOfArray) {
+                if (isBefore(date.dateTime, newDate.dateTime) === true) {
+                    let index = newToDoItemArray.array.indexOf(newDate);
+                    newToDoItemArray.array.splice(index, 0, date);
+                    break;
+                } else if (date.dateTime === newDate.dateTime) {
+                    newToDoItemArray.array.push(date);
+                    break;
+                } else {
+                    continue;
+                }
+            }
+        } else {
+            newToDoItemArray.array.push(date)
+        }
+    }
+    return newToDoItemArray
+};
