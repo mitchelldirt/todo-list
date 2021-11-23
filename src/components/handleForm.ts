@@ -7,18 +7,18 @@ import trashBin from '../components/deleteButton'
 import unChecked from '../components/unChecked';
 import editButton from '../components/editButton';
 import checked from '../components/checked';
+import { format } from 'date-fns'
 
 let projects: toDoItemArray[] = returnProjects()
 
 const submitBtn: HTMLElement = document.getElementById('submitBtn') as HTMLButtonElement;
 submitBtn.onclick = function getInputs(e) {
-    const title = document.getElementById("title") as HTMLInputElement; 
+    const title = document.getElementById("title") as HTMLInputElement;
     const description = document.getElementById("description") as HTMLTextAreaElement;
     let date = document.getElementById("dateTime") as HTMLInputElement;
     let dateTime: Date = new Date(date.value);
     const select = document.getElementById("project") as HTMLSelectElement;
     const project = select.options[select.selectedIndex].value;
-    console.log(project)
     if (title.value === "" || date.value === "") {
         return;
     }
@@ -55,7 +55,7 @@ function storeObject(obj: toDoItem) {
     // changeCurrentProject changes which <option> element has the selected attribute.
     sortProjects(projects)
     changeCurrentProject(obj.project);
-    return displayObjects(projects[+obj.project].array); 
+    return displayObjects(projects[+obj.project].array);
 };
 
 function sortProjects(projectArray: toDoItemArray[]) {
@@ -82,11 +82,10 @@ export function displayObjects(array: toDoItem[]) {
         const deleteBtn = trashBin();
         addDeleteFunctionality(deleteBtn);
         // Data-key lets you know which project you're using
-        container.setAttribute("data-key", `${obj.project}`); 
+        container.setAttribute("data-key", `${obj.project}`);
         title.innerHTML = obj.title;
         //convert the date to a string first
-        console.log(obj.dateTime);
-        let date: string = obj.dateTime.toISOString()
+        let date: string = format(obj.dateTime, "yyyy-MM-dd'T'HH:mm")
         dueDate.innerHTML = processDate(date);
         container.id = id;
         container.classList.add("toDoItem");
@@ -115,7 +114,6 @@ export function displayObjects(array: toDoItem[]) {
         container.appendChild(edit);
         container.appendChild(deleteBtn);
         main.appendChild(container);
-        console.log(deleteBtn.parentElement);
         counter += 1;
     }
     resetForm();
@@ -137,9 +135,8 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
                 displayObjects(projects[project].array);
             }
         }
-        console.log(`${project} + ${id}`);
     }
-    }
+}
 
 function checkOffItem(element: HTMLSpanElement) {
     element.onclick = () => {
