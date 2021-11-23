@@ -68,7 +68,7 @@ function sortProjects(projectArray: toDoItemArray[]) {
 }
 
 export function displayObjects(array: toDoItem[]) {
-    const main: HTMLElement = document.getElementById('content');
+    const main: HTMLElement = document.getElementById('content') as HTMLDivElement;
     main.innerHTML = ""
     let counter: number = 1;
     for (let obj of array) {
