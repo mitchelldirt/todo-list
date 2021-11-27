@@ -1,9 +1,8 @@
 import { toDoItem } from "../types";
 import { toDoItemArray } from "../types";
 import { displayObjects, updateProjects } from '../components/handleForm'
-import { add, isBefore } from "date-fns";
+import { isBefore, isThisWeek } from "date-fns";
 import trashBin from '../components/deleteButton';
-const _ = require('lodash');
 
 
 let projects: toDoItemArray[] = [];
@@ -132,3 +131,9 @@ export function sortProjectArray(input: toDoItemArray): toDoItemArray {
     }
     return newToDoItemArray
 };
+
+export function currentWeek(obj: toDoItem) {
+    if (isThisWeek(obj.dateTime) === true) {
+        return obj;
+    }
+}
