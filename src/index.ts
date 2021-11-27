@@ -7,7 +7,7 @@ import './components/handleProjects';
 import { toDoItem } from './types';
 import { toggleModal } from './components/modal';
 import { displayObjects } from "./components/handleForm";
-import { changeCurrentProject, returnProjects } from "./components/handleProjects";
+import { changeCurrentProject, returnProjects, sortProjectArray } from "./components/handleProjects";
 import { toDoItemArray } from "./types";
 
 const html = document.querySelector('html');
@@ -15,11 +15,12 @@ html.dataset.theme = `theme-dark`;
 
 const inboxBtn = document.getElementById('inboxBtn');
 inboxBtn.onclick = (e) => {
+    let inbox: toDoItemArray = returnProjects()[0]
     e.preventDefault;
     let mainNav: HTMLElement = document.querySelector('.nav-section');
     //nav.classList.toggle("displayNone");
     mainNav.classList.toggle('show-nav');
-    displayObjects(returnProjects()[0].array);
+    displayObjects(sortProjectArray(inbox).array);
     changeCurrentProject('0')
 }
 

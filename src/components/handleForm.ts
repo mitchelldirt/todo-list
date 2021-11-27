@@ -22,7 +22,7 @@ submitBtn.onclick = function getInputs(e) {
     if (title.value === "" || date.value === "") {
         return;
     }
-    if (title.value.length > 15) {
+    if (title.value.length > 15) {``
         let titleArray = title.value.split('');
         titleArray.splice(13, 3, '...');
         title.value = titleArray.join('');
@@ -51,6 +51,10 @@ function createObject(title: string, description: string, dateTime: Date, projec
 };
 
 function storeObject(obj: toDoItem) {
+    // Add object to the inbox if it isn't already going there
+    if (+obj.project !== 0) {
+        projects[0].array.push(obj);
+    }
     projects[+obj.project].array.push(obj);
     // changeCurrentProject changes which <option> element has the selected attribute.
     sortProjects(projects)
