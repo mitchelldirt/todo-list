@@ -1,0 +1,1 @@
+For editing - open up the regular modal but autofill all of the values from the toDoItem that was clicked. When the submit button is clicked - delete the toDoItem from the Inbox and its project and then let it run like you're submitting a new ToDoItem
