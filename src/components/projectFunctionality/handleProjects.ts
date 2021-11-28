@@ -1,8 +1,8 @@
-import { toDoItem } from "../types";
-import { toDoItemArray } from "../types";
-import { displayObjects, updateProjects } from '../components/handleForm'
+import { toDoItem } from "../../types";
+import { toDoItemArray } from "../../types";
+import { displayObjects, updateProjects } from '../submitForm/handleForm'
 import { isBefore, isThisWeek } from "date-fns";
-import trashBin from '../components/deleteButton';
+import trashBin from '../Icons/deleteButton';
 
 
 let projects: toDoItemArray[] = [];

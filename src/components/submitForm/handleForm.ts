@@ -1,12 +1,12 @@
-import { toDoItem } from '../types';
-import { toDoItemArray } from '../types';
-import { toggleModal } from '../components/modal';
-import { returnProjects, changeCurrentProject, sortProjectArray } from '../components/handleProjects';
+import { toDoItem } from '../../types';
+import { toDoItemArray } from '../../types';
+import { toggleModal } from '../modal';
+import { returnProjects, changeCurrentProject, sortProjectArray } from '../projectFunctionality/handleProjects';
 
-import trashBin from '../components/deleteButton'
-import unChecked from '../components/unChecked';
-import editButton from '../components/editButton';
-import checked from '../components/checked';
+import trashBin from '../deleteButton'
+import unChecked from '../unChecked';
+import editButton from '../editButton';
+import checked from '../Icons/checked';
 import { format } from 'date-fns'
 
 let projects: toDoItemArray[] = returnProjects()

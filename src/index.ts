@@ -1,13 +1,13 @@
 import './styles.css';
 import './components/modal.ts';
-import './components/hamburgerButton.ts';
+import './components/userInterface/hamburgerButton.ts';
 import './components/lightModeDarkMode.ts';
-import './components/handleForm';
-import './components/handleProjects';
+import './components/submitForm/handleForm';
+import './components/projectFunctionality/handleProjects';
 import { toDoItem } from './types';
-import { toggleModal } from './components/modal';
-import { displayObjects } from "./components/handleForm";
-import { changeCurrentProject, currentWeek, returnProjects, sortProjectArray } from "./components/handleProjects";
+import { toggleModal } from './components/userInterface/modal';
+import { displayObjects } from "./components/submitForm/handleForm";
+import { changeCurrentProject, currentWeek, returnProjects, sortProjectArray } from "./components/projectFunctionality/handleProjects";
 import { toDoItemArray } from "./types";
 
 const html = document.querySelector('html');
