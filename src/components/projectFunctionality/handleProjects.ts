@@ -50,9 +50,18 @@ function factoryToDoItemArray(input: string) {
         value: input,
         array: array
     };
+    // If the length of the title of the toDoItem is empty then don't push it.
     if (arrayObj.value.length > 0) {
         projects.push(arrayObj);
     }
+    populateDropDownOptions();
+}
+
+factoryToDoItemArray("inbox");
+factoryToDoItemArray("sample");
+
+// Gives project options in the modal.
+function populateDropDownOptions() {
     const selectElement = document.getElementById("project");
     selectElement.innerHTML = "";
     let valueCounter = 0;
@@ -64,9 +73,6 @@ function factoryToDoItemArray(input: string) {
         valueCounter += 1;
     }
 }
-
-factoryToDoItemArray("inbox");
-factoryToDoItemArray("sample");
 
 // Used in the handle form section to select which project is needed.
 export function returnProjects() {
