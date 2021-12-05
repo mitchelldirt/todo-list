@@ -15,7 +15,7 @@ let projects: toDoItemArray[] = returnProjects();
 const submitBtn: HTMLElement = document.getElementById("submitBtn") as HTMLButtonElement;
 submitBtn.onclick = () => {
     const inputs = getInputs();
-    // Closes the modal
+    // Closes the moadal
     toggleModal();
     const object: toDoItem = createObject(inputs.title, inputs.description, inputs.dateTime, inputs.project, false);
     storeObject(object);
@@ -101,6 +101,7 @@ export function displayObjects(array: toDoItem[]) {
         const title: HTMLElement = document.createElement("p") as HTMLParagraphElement;
         
         const edit = editButton();
+        edit.classList.add("editBtn");
         modifyToDoItem(edit);
 
         const deleteBtn = trashBin();
