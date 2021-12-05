@@ -7,6 +7,8 @@ import unChecked from "../Icons/unChecked";
 import editButton from "../Icons/editButton";
 import checked from "../Icons/checked";
 import { format } from "date-fns";
+import "../projectFunctionality/modifyToDoItem";
+import modifyToDoItem from "../projectFunctionality/modifyToDoItem";
 
 let projects: toDoItemArray[] = returnProjects();
 
@@ -97,7 +99,9 @@ export function displayObjects(array: toDoItem[]) {
         const container = document.createElement("li") as HTMLLIElement;
         const dueDate: HTMLElement = document.createElement("p") as HTMLParagraphElement;
         const title: HTMLElement = document.createElement("p") as HTMLParagraphElement;
+        
         const edit = editButton();
+        modifyToDoItem(edit);
 
         const deleteBtn = trashBin();
         addDeleteFunctionality(deleteBtn);
