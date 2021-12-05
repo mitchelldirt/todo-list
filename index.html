@@ -56,6 +56,30 @@
                 </form>
             </div>
         </div>
+
+        <div class="modal-edit">
+            <div class="modal-content">
+                <span class="close-button-edit">&times;</span>
+                <form id="modalForm" role="form" action="">
+                    <label class="breakLabel" for="title">Title:</label>
+                    <input class="inputOutline" placeholder="Listen to runescape music and code" type="text"
+                        name="title" id="title-edit" required>
+                    <label class="breakLabel" for="description">Description:</label>
+                    <textarea class="inputOutline"
+                        placeholder="Focus on completing your hour of 100DaysOfCode by listening to runescape music :)"
+                        name="description" id="description-edit" cols="30" rows="5"></textarea>
+                    <label class="breakLabel" for="date">Date:</label>
+                    <input class="inputOutline" type="datetime-local" name="date" id="dateTime-edit" required>
+                    <label class="breakLabel projectLabelFlex" for="project">Projects:<p
+                            style="color: darkgray; margin-left: 3%;">go to projects section to add more :)</p></label>
+                    <select class="inputOutline" name="project" id="project-edit">
+                    </select>
+                    <label class="submitBtn breakLabel for=" submitBtn"> </label>
+                    <button id="submitBtn-edit" type="submit" class="inputOutline submitBtn" name="submitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+
         <main id="content">
         </main>
     </header>
