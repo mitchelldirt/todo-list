@@ -7,8 +7,8 @@ import unChecked from "../Icons/unChecked";
 import editButton from "../Icons/editButton";
 import checked from "../Icons/checked";
 import { format } from "date-fns";
+import { toggleEditModal } from "../userInterface/editItemModal";
 import "../projectFunctionality/modifyToDoItem";
-import modifyToDoItem from "../projectFunctionality/modifyToDoItem";
 
 let projects: toDoItemArray[] = returnProjects();
 
@@ -101,7 +101,7 @@ export function displayObjects(array: toDoItem[]) {
         const title: HTMLElement = document.createElement("p") as HTMLParagraphElement;
         
         const edit = editButton();
-        edit.classList.add("editBtn");
+       /* edit.classList.add("editBtn"); */
         modifyToDoItem(edit);
 
         const deleteBtn = trashBin();
@@ -112,10 +112,6 @@ export function displayObjects(array: toDoItem[]) {
         //convert the date to a string first
         const date: string = format(obj.dateTime, "yyyy-MM-dd'T'HH:mm");
         dueDate.innerHTML = processDate(date);
-
-        // set the id's to whatever the counter is at.
-        container.id = id;
-        obj.id = id;
 
         // Check if the toDoItem is checked. If it is display a filled in circle - if not display the an unfilled circle.
         container.append(isToDoItemChecked(obj));
@@ -143,6 +139,11 @@ export function displayObjects(array: toDoItem[]) {
         container.appendChild(dueDate);
         container.appendChild(edit);
         container.appendChild(deleteBtn);
+
+        // set the id's to whatever the counter is at.
+        container.id = id;
+        obj.id = id;
+
         main.appendChild(container);
 
         // Increment the counter variable so that the next object will have an id 1 number bigger.
@@ -209,4 +210,56 @@ function checkOffItem(element: HTMLSpanElement) {
 
 export function updateProjects() {
     return projects;
+}
+
+function modifyToDoItem(element: HTMLSpanElement) {
+    element.onclick = () => {
+        const project: number = +element.parentElement.getAttribute("data-key");
+        const id = element.parentElement.id;
+        for (let item of projects[project].array) {
+            if (item.id === id) {
+                const index: number = projects[project].array.indexOf(item);
+                const currentElement: toDoItem = projects[project].array[index];
+                toggleEditModal();
+                console.log(currentElement);
+                populateModal(currentElement);
+
+                // Possibly create a duplicate modal meant for editing so you can give that submit button certain properties
+                // Have it just change the values of the element you're trying to edit and then display objects
+
+               const submitBtn: HTMLElement = document.getElementById("submitBtn-edit");
+                submitBtn.onclick = (e) => {
+                    e.preventDefault()
+                    const title = document.getElementById("title-edit") as HTMLInputElement;
+                    const usefulTitle = title.value
+                    if (usefulTitle !== "") {
+                        currentElement.title = usefulTitle;
+                    }
+                    currentElement.description = document.getElementById("description-edit").innerText;
+                    const date = document.getElementById("dateTime-edit") as HTMLInputElement;
+                    const dateTime: Date = new Date(date.value);
+                    if (dateTime) {
+                        currentElement.dateTime = dateTime;
+                    }
+                    
+                    //projects[project].array.splice(index, 1);
+                    displayObjects(projects[project].array);
+                    toggleEditModal();
+                }
+            } 
+        }
+    };
+}
+
+function populateModal(element: toDoItem) {
+    const title = document.getElementById("title-edit") as HTMLInputElement;
+    const description: HTMLElement = document.getElementById("description-edit") as HTMLTextAreaElement;
+    let dateTime: HTMLInputElement = document.getElementById("dateTime-edit") as HTMLInputElement;
+    let goodDateTime = format(new Date(element.dateTime), "yyyy-MM-dd'T'HH:mm")
+    // const project: HTMLElement = document.getElementById("project") as HTMLSelectElement;
+
+    title.value = element.title;
+    description.innerText = element.description;
+    dateTime.value = goodDateTime;
+    // put the change project function in here.
 }

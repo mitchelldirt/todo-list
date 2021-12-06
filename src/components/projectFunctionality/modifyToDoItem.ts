@@ -3,14 +3,13 @@ import { returnProjects } from "../projectFunctionality/handleProjects";
 import { displayObjects } from "../submitForm/handleForm";
 import { toggleEditModal } from "../userInterface/editItemModal";
 
-
-const projects: toDoItemArray[] = returnProjects();
-
-export default function modifyToDoItem(element: HTMLSpanElement) {
+/*
+function modifyToDoItem(element: HTMLSpanElement) {
     element.onclick = () => {
         const project: number = +element.parentElement.getAttribute("data-key");
         const id = element.parentElement.id;
-        for (const item of projects[project].array) {
+        for (let item of projects[project].array) {
+            console.log(projects[project].array.length)
             if (item.id === id) {
                 const index: number = projects[project].array.indexOf(item);
                 const currentElement: toDoItem = projects[project].array[index];
@@ -31,8 +30,11 @@ export default function modifyToDoItem(element: HTMLSpanElement) {
                     const dateTime: Date = new Date(date.value);
                     currentElement.dateTime = dateTime;
                     displayObjects(projects[project].array);
-                };
-            }
+                }
+            } else {
+                console.log(item.id);
+                console.log("hello");
+            };
         }
     };
 }
@@ -48,3 +50,4 @@ function populateModal(element: toDoItem) {
     dateTime.value = element.dateTime.toString();
     // put the change project function in here.
 }
+*/
