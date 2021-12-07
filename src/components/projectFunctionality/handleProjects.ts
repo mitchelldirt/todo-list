@@ -1,6 +1,6 @@
 import { toDoItem } from "../../types";
 import { toDoItemArray } from "../../types";
-import { displayObjects, updateProjects } from "../submitForm/handleForm";
+import { changeProjectDisplayName, displayObjects, updateProjects } from "../submitForm/handleForm";
 import { isBefore, isThisWeek } from "date-fns";
 import trashBin from "../Icons/deleteButton";
 
@@ -33,7 +33,8 @@ projectBtn.onclick = () => {
         const element = document.createElement("button");
         element.innerHTML = projects[i].value;
         element.onclick = () => {
-            return displayObjects(projects[i].array);
+            const currentProject = returnProjects()[i];
+            return displayObjects(sortProjectArray(currentProject).array);
         };
         flex.appendChild(element);
         container.appendChild(flex);
@@ -84,6 +85,7 @@ export function changeCurrentProject(projectIndex: string) {
     for (let i = 0; i < projectOptions.length; i++) {
         if (projectIndex === projectOptions[i].value) {
             projectOptions[i].setAttribute("selected", "selected");
+            changeProjectDisplayName(projects[i].value);
         } else {
             projectOptions[i].removeAttribute("selected");
         }

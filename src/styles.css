@@ -95,7 +95,7 @@ label {
     font-size: 1em;
 }
 
-h1 {
+h1, h2 {
   justify-self: center;
   align-self: center;
   font-family: var(--title, "roboto-title");

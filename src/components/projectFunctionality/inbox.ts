@@ -1,4 +1,4 @@
-import { displayObjects } from '../../components/submitForm/handleForm';
+import { changeProjectDisplayName, displayObjects } from '../../components/submitForm/handleForm';
 import { changeCurrentProject, returnProjects, sortProjectArray } from "../../components/projectFunctionality/handleProjects";
 import { toDoItemArray } from "../../types";
 
@@ -11,5 +11,6 @@ inboxBtn.onclick = (e) => {
     //nav.classList.toggle("displayNone");
     mainNav.classList.toggle("show-nav");
     displayObjects(sortProjectArray(inbox).array);
+    changeProjectDisplayName(inbox.value);
     changeCurrentProject("0");
 };

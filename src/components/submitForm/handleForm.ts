@@ -18,6 +18,7 @@ submitBtn.onclick = () => {
     // Closes the moadal
     toggleModal();
     const object: toDoItem = createObject(inputs.title, inputs.description, inputs.dateTime, inputs.project, false);
+    changeProjectDisplayName(projects[+object.project].value);
     storeObject(object);
     sortProjects(projects);
     changeCurrentProject(object.project);
@@ -85,6 +86,11 @@ function sortProjects(projectArray: toDoItemArray[]): void {
     projects = sortedProjects;
 }
 
+export function changeProjectDisplayName(name: string) {
+    const projectName = document.getElementById("projectName") as HTMLHeadingElement;
+    projectName.innerHTML = `${name}`;
+}
+
 export function displayObjects(array: toDoItem[]) {
     const main: HTMLElement = document.getElementById("content") as HTMLDivElement;
 
@@ -99,9 +105,9 @@ export function displayObjects(array: toDoItem[]) {
         const container = document.createElement("li") as HTMLLIElement;
         const dueDate: HTMLElement = document.createElement("p") as HTMLParagraphElement;
         const title: HTMLElement = document.createElement("p") as HTMLParagraphElement;
-        
+
         const edit = editButton();
-       /* edit.classList.add("editBtn"); */
+        /* edit.classList.add("editBtn"); */
         modifyToDoItem(edit);
 
         const deleteBtn = trashBin();
@@ -227,7 +233,7 @@ function modifyToDoItem(element: HTMLSpanElement) {
                 // Possibly create a duplicate modal meant for editing so you can give that submit button certain properties
                 // Have it just change the values of the element you're trying to edit and then display objects
 
-               const submitBtn: HTMLElement = document.getElementById("submitBtn-edit");
+                const submitBtn: HTMLElement = document.getElementById("submitBtn-edit");
                 submitBtn.onclick = (e) => {
                     e.preventDefault()
                     const title = document.getElementById("title-edit") as HTMLInputElement;
@@ -235,18 +241,29 @@ function modifyToDoItem(element: HTMLSpanElement) {
                     if (usefulTitle !== "") {
                         currentElement.title = usefulTitle;
                     }
-                    currentElement.description = document.getElementById("description-edit").innerText;
+
+                    const description = document.getElementById("description-edit") as HTMLInputElement;
+                    const usefulDescription = description.value;
+                    currentElement.description = usefulDescription;
+
                     const date = document.getElementById("dateTime-edit") as HTMLInputElement;
                     const dateTime: Date = new Date(date.value);
                     if (dateTime) {
                         currentElement.dateTime = dateTime;
                     }
-                    
-                    //projects[project].array.splice(index, 1);
-                    displayObjects(projects[project].array);
-                    toggleEditModal();
+
+                    const selectedProject = document.getElementById("project-edit") as HTMLInputElement;
+                    const usefulSelectedProject: string = selectedProject.value;
+
+                    // If the project selected differs from the project it was in then add it to the new project
+                    if (currentElement.project !== usefulSelectedProject) {
+                        projects[+usefulSelectedProject].array.push(currentElement);
+                    }
+                    const currentProject = updateProjects()[+usefulSelectedProject];
+                    displayObjects(sortProjectArray(currentProject).array);
+                    toggleEditModal()
                 }
-            } 
+            }
         }
     };
 }
@@ -256,10 +273,24 @@ function populateModal(element: toDoItem) {
     const description: HTMLElement = document.getElementById("description-edit") as HTMLTextAreaElement;
     let dateTime: HTMLInputElement = document.getElementById("dateTime-edit") as HTMLInputElement;
     let goodDateTime = format(new Date(element.dateTime), "yyyy-MM-dd'T'HH:mm")
-    // const project: HTMLElement = document.getElementById("project") as HTMLSelectElement;
+    populateEditModalDropDownOptions();
 
     title.value = element.title;
     description.innerText = element.description;
     dateTime.value = goodDateTime;
     // put the change project function in here.
+}
+
+
+function populateEditModalDropDownOptions() {
+    const selectElement = document.getElementById("project-edit");
+    selectElement.innerHTML = "";
+    let valueCounter = 0;
+    for (const project of projects) {
+        const option = document.createElement("option");
+        option.value = valueCounter.toString();
+        option.innerHTML = project.value;
+        selectElement.appendChild(option);
+        valueCounter += 1;
+    }
 }
