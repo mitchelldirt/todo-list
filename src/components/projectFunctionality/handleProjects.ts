@@ -34,6 +34,7 @@ projectBtn.onclick = () => {
         element.innerHTML = projects[i].value;
         element.onclick = () => {
             const currentProject = returnProjects()[i];
+            changeProjectDisplayName(currentProject.value);
             return displayObjects(sortProjectArray(currentProject).array);
         };
         flex.appendChild(element);

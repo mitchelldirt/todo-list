@@ -222,7 +222,7 @@ function modifyToDoItem(element: HTMLSpanElement) {
     element.onclick = () => {
         const project: number = +element.parentElement.getAttribute("data-key");
         const id = element.parentElement.id;
-        for (let item of projects[project].array) {
+        for (const item of projects[project].array) {
             if (item.id === id) {
                 const index: number = projects[project].array.indexOf(item);
                 const currentElement: toDoItem = projects[project].array[index];
@@ -235,9 +235,9 @@ function modifyToDoItem(element: HTMLSpanElement) {
 
                 const submitBtn: HTMLElement = document.getElementById("submitBtn-edit");
                 submitBtn.onclick = (e) => {
-                    e.preventDefault()
+                    e.preventDefault();
                     const title = document.getElementById("title-edit") as HTMLInputElement;
-                    const usefulTitle = title.value
+                    const usefulTitle = title.value;
                     if (usefulTitle !== "") {
                         currentElement.title = usefulTitle;
                     }
@@ -254,15 +254,25 @@ function modifyToDoItem(element: HTMLSpanElement) {
 
                     const selectedProject = document.getElementById("project-edit") as HTMLInputElement;
                     const usefulSelectedProject: string = selectedProject.value;
+                    
+                    // Used to delete item from it's old project.
+                    const oldProject: number = +currentElement.project;
+
+                    currentElement.project = usefulSelectedProject;
+                    
 
                     // If the project selected differs from the project it was in then add it to the new project
                     if (currentElement.project !== usefulSelectedProject) {
+                        if (currentElement.project !== "0") {
+                            projects[oldProject].array.splice(index, 1);
+                            changeProjectDisplayName(currentElement.project);                        
+                        }
                         projects[+usefulSelectedProject].array.push(currentElement);
                     }
                     const currentProject = updateProjects()[+usefulSelectedProject];
                     displayObjects(sortProjectArray(currentProject).array);
-                    toggleEditModal()
-                }
+                    toggleEditModal();
+                };
             }
         }
     };
@@ -271,8 +281,8 @@ function modifyToDoItem(element: HTMLSpanElement) {
 function populateModal(element: toDoItem) {
     const title = document.getElementById("title-edit") as HTMLInputElement;
     const description: HTMLElement = document.getElementById("description-edit") as HTMLTextAreaElement;
-    let dateTime: HTMLInputElement = document.getElementById("dateTime-edit") as HTMLInputElement;
-    let goodDateTime = format(new Date(element.dateTime), "yyyy-MM-dd'T'HH:mm")
+    const dateTime: HTMLInputElement = document.getElementById("dateTime-edit") as HTMLInputElement;
+    const goodDateTime = format(new Date(element.dateTime), "yyyy-MM-dd'T'HH:mm");
     populateEditModalDropDownOptions();
 
     title.value = element.title;
