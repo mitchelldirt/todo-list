@@ -256,15 +256,15 @@ function modifyToDoItem(element: HTMLSpanElement) {
                     const usefulSelectedProject: string = selectedProject.value;
                     
                     // Used to delete item from it's old project.
-                    const oldProject: number = +currentElement.project;
+                    const oldProject: string = currentElement.project;
 
                     currentElement.project = usefulSelectedProject;
                     
 
                     // If the project selected differs from the project it was in then add it to the new project
-                    if (currentElement.project !== usefulSelectedProject) {
+                    if (oldProject !== usefulSelectedProject) {
                         if (currentElement.project !== "0") {
-                            projects[oldProject].array.splice(index, 1);
+                            projects[+oldProject].array.splice(index, 1);
                             changeProjectDisplayName(currentElement.project);                        
                         }
                         projects[+usefulSelectedProject].array.push(currentElement);
