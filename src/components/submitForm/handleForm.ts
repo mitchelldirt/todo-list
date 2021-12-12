@@ -253,23 +253,28 @@ function modifyToDoItem(element: HTMLSpanElement) {
                     }
 
                     const selectedProject = document.getElementById("project-edit") as HTMLInputElement;
-                    const usefulSelectedProject: string = selectedProject.value;
-                    
+                    const newProject: string = selectedProject.value;
+
                     // Used to delete item from it's old project.
                     const oldProject: string = currentElement.project;
+                    currentElement.project = newProject;
 
-                    currentElement.project = usefulSelectedProject;
-                    
 
                     // If the project selected differs from the project it was in then add it to the new project
-                    if (oldProject !== usefulSelectedProject) {
-                        if (currentElement.project !== "0") {
+                    if (oldProject !== newProject) {
+                        if (newProject === "0" && oldProject !== "0") {
                             projects[+oldProject].array.splice(index, 1);
-                            changeProjectDisplayName(currentElement.project);                        
                         }
-                        projects[+usefulSelectedProject].array.push(currentElement);
-                    }
-                    const currentProject = updateProjects()[+usefulSelectedProject];
+                        if (oldProject !== "0") {
+                            projects[+oldProject].array.splice(index, 1);
+                            changeProjectDisplayName(projects[+currentElement.project].value);
+                            projects[+newProject].array.push(currentElement);   
+                        } else {
+                            changeProjectDisplayName(projects[+currentElement.project].value);
+                            projects[+newProject].array.push(currentElement);    
+                        }
+                                            }
+                    const currentProject = updateProjects()[+newProject];
                     displayObjects(sortProjectArray(currentProject).array);
                     toggleEditModal();
                 };
@@ -295,12 +300,10 @@ function populateModal(element: toDoItem) {
 function populateEditModalDropDownOptions() {
     const selectElement = document.getElementById("project-edit");
     selectElement.innerHTML = "";
-    let valueCounter = 0;
-    for (const project of projects) {
+    for (let i = 1; i < projects.length; i++) {
         const option = document.createElement("option");
-        option.value = valueCounter.toString();
-        option.innerHTML = project.value;
+        option.value = i.toString();
+        option.innerHTML = projects[i].value;
         selectElement.appendChild(option);
-        valueCounter += 1;
     }
 }
