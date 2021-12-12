@@ -71,6 +71,7 @@ function createObject(title: string, description: string, dateTime: Date, projec
 
 function storeObject(obj: toDoItem): void {
     // Add object to the inbox if it isn't already going there
+    obj.id = projects[0].array.length.toString();
     if (+obj.project !== 0) {
         projects[0].array.push(obj);
     }
@@ -147,8 +148,8 @@ export function displayObjects(array: toDoItem[]) {
         container.appendChild(deleteBtn);
 
         // set the id's to whatever the counter is at.
-        container.id = id;
-        obj.id = id;
+        container.id = obj.id;
+        //obj.id = id;
 
         main.appendChild(container);
 
@@ -179,6 +180,12 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
                 const index: number = projects[project].array.indexOf(item);
                 projects[project].array.splice(index, 1);
                 displayObjects(projects[project].array);
+            }
+        }
+        for (const item of projects[0].array) {
+            if (item.id === id) {
+                const index: number = projects[project].array.indexOf(item);
+                projects[0].array.splice(index, 1);
             }
         }
     };
