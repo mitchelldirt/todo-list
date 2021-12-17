@@ -38,13 +38,12 @@ function getInputs() {
     const select = document.getElementById("project") as HTMLSelectElement;
     const project = select.options[select.selectedIndex].value;
 
-    const formattedTitle = limitTitleLength(title.value.toString());
     if (title.value === "" || date.value === "") {
         return;
     }
 
     return {
-        title: formattedTitle,
+        title: title.value,
         description: description.value,
         dateTime: dateTime,
         project: project,
@@ -114,8 +113,12 @@ export function displayObjects(array: toDoItem[]) {
         const deleteBtn = trashBin();
         addDeleteFunctionality(deleteBtn);
 
-        title.innerHTML = obj.title;
-
+        if (obj.title.length > 15) {
+            const shortenedTitle: string = limitTitleLength(obj.title);
+            title.innerHTML = shortenedTitle;
+        } else {
+            title.innerHTML = obj.title;
+        }
         //convert the date to a string first
         const date: string = format(obj.dateTime, "yyyy-MM-dd'T'HH:mm");
         dueDate.innerHTML = processDate(date);
