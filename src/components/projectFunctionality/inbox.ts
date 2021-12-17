@@ -1,5 +1,5 @@
-import { changeProjectDisplayName, displayObjects } from '../../components/submitForm/handleForm';
-import { changeCurrentProject, returnProjects, sortProjectArray } from "../../components/projectFunctionality/handleProjects";
+import { changeProjectDisplayName, displayObjects } from "../../components/submitForm/handleForm";
+import { changeCurrentProject, returnProjects, sortByChecked, sortProjectArray } from "../../components/projectFunctionality/handleProjects";
 import { toDoItemArray } from "../../types";
 
 
@@ -10,7 +10,7 @@ inboxBtn.onclick = (e) => {
     const mainNav: HTMLElement = document.querySelector(".nav-section");
     //nav.classList.toggle("displayNone");
     mainNav.classList.toggle("show-nav");
-    displayObjects(sortProjectArray(inbox).array);
+    displayObjects(sortByChecked(sortProjectArray(inbox)).array);
     changeProjectDisplayName(inbox.value);
     changeCurrentProject("0");
 };

@@ -141,6 +141,22 @@ export function sortProjectArray(input: toDoItemArray): toDoItemArray {
     return newToDoItemArray;
 }
 
+export function sortByChecked(input: toDoItemArray): toDoItemArray {
+    const uncheckedArray: toDoItem[] = [];
+    const checkedArray: toDoItem[] = [];
+    for (const item of input.array) {
+        if (item.checked === true) {
+            checkedArray.push(item);
+        } else if (item.checked === false) {
+            uncheckedArray.push(item);
+        } else {
+            console.log("Not sorting by checked");
+        }
+    }
+    input.array = uncheckedArray.concat(checkedArray);
+    return input;
+}
+
 export function currentWeek(obj: toDoItem) {
     if (isThisWeek(obj.dateTime) === true) {
         return obj;

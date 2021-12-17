@@ -1,7 +1,7 @@
 import { toDoItem } from "../../types";
 import { toDoItemArray } from "../../types";
 import { toggleModal } from "../userInterface/modal";
-import { returnProjects, changeCurrentProject, sortProjectArray } from "../projectFunctionality/handleProjects";
+import { returnProjects, changeCurrentProject, sortProjectArray, sortByChecked } from "../projectFunctionality/handleProjects";
 import trashBin from "../Icons/deleteButton";
 import unChecked from "../Icons/unChecked";
 import editButton from "../Icons/editButton";
@@ -38,7 +38,7 @@ function getInputs() {
     const select = document.getElementById("project") as HTMLSelectElement;
     const project = select.options[select.selectedIndex].value;
 
-    const formattedTitle = limitTitleLength(title.value);
+    const formattedTitle = limitTitleLength(title.value.toString());
     if (title.value === "" || date.value === "") {
         return;
     }
@@ -53,9 +53,9 @@ function getInputs() {
 
 function limitTitleLength(text: string): string {
     if (text.length > 15) {
-        text = text.split("").splice(13, 3, "...").join("");
+        text = text.slice(0, 16) + "...";
     }
-    return text;
+    return text;  
 }
 
 function createObject(title: string, description: string, dateTime: Date, project: string, checked: boolean): toDoItem {
@@ -81,7 +81,7 @@ function storeObject(obj: toDoItem): void {
 function sortProjects(projectArray: toDoItemArray[]): void {
     const sortedProjects: toDoItemArray[] = [];
     for (const project of projectArray) {
-        const item: toDoItemArray = sortProjectArray(project);
+        const item: toDoItemArray = sortByChecked(sortProjectArray(project));
         sortedProjects.push(item);
     }
     projects = sortedProjects;
@@ -217,7 +217,10 @@ function checkOffItem(element: HTMLSpanElement) {
                 }
             }
         }
-        displayObjects(projects[project].array);
+        const sortedArray: toDoItemArray = sortByChecked(sortProjectArray(projects[project]));
+        //sort the inbox as well
+        sortByChecked(sortProjectArray(projects[0]));
+        displayObjects(sortedArray.array);
     };
 }
 
@@ -282,7 +285,7 @@ function modifyToDoItem(element: HTMLSpanElement) {
                         }
                                             }
                     const currentProject = updateProjects()[+newProject];
-                    displayObjects(sortProjectArray(currentProject).array);
+                    displayObjects(sortByChecked(sortProjectArray(currentProject)).array);
                     toggleEditModal();
                 };
             }

@@ -148,6 +148,11 @@ form {
   row-gap: 2%;
 }
 
+#projectName {
+  border-bottom: 1px solid var(--lightColor);
+  text-align: center;
+}
+
 .breakLabel::before {
   content: "\a";
   white-space: pre;
@@ -162,7 +167,6 @@ form {
 }
 
 #header {
-  border-bottom: var(--lightColor) 1px solid;
   display: flex;
   justify-content: space-between;
 }
