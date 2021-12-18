@@ -6,9 +6,10 @@ import trashBin from "../Icons/deleteButton";
 import unChecked from "../Icons/unChecked";
 import editButton from "../Icons/editButton";
 import checked from "../Icons/checked";
-import { format } from "date-fns";
+import { format, parseJSON } from "date-fns";
 import { toggleEditModal } from "../userInterface/editItemModal";
 import "../projectFunctionality/modifyToDoItem";
+import { storageAvailable } from "../..";
 
 let projects: toDoItemArray[] = returnProjects();
 
@@ -54,7 +55,7 @@ function limitTitleLength(text: string): string {
     if (text.length > 15) {
         text = text.slice(0, 16) + "...";
     }
-    return text;  
+    return text;
 }
 
 function createObject(title: string, description: string, dateTime: Date, project: string, checked: boolean): toDoItem {
@@ -97,11 +98,7 @@ export function displayObjects(array: toDoItem[]) {
     // clear the main element so new content can be loaded in.
     main.innerHTML = "";
 
-    // Initialize the counter variable which will be used for assigning id's to the toDoItems for deleting, editing, and checking off.
-    let counter = 1;
-
     for (const obj of array) {
-        const id: string = counter.toString();
         const container = document.createElement("li") as HTMLLIElement;
         const dueDate: HTMLElement = document.createElement("p") as HTMLParagraphElement;
         const title: HTMLElement = document.createElement("p") as HTMLParagraphElement;
@@ -120,7 +117,7 @@ export function displayObjects(array: toDoItem[]) {
             title.innerHTML = obj.title;
         }
         //convert the date to a string first
-        const date: string = format(obj.dateTime, "yyyy-MM-dd'T'HH:mm");
+        const date: string = format((obj.dateTime as Date), "yyyy-MM-dd'T'HH:mm");
         dueDate.innerHTML = processDate(date);
 
         // Check if the toDoItem is checked. If it is display a filled in circle - if not display the an unfilled circle.
@@ -155,9 +152,10 @@ export function displayObjects(array: toDoItem[]) {
         //obj.id = id;
 
         main.appendChild(container);
-
-        // Increment the counter variable so that the next object will have an id 1 number bigger.
-        counter += 1;
+        if (storageAvailable()) {
+            projects = returnProjects();
+            localStorage.setItem("projectsArray", JSON.stringify(projects));
+        }
     }
 }
 
@@ -281,12 +279,12 @@ function modifyToDoItem(element: HTMLSpanElement) {
                         if (oldProject !== "0") {
                             projects[+oldProject].array.splice(index, 1);
                             changeProjectDisplayName(projects[+currentElement.project].value);
-                            projects[+newProject].array.push(currentElement);   
+                            projects[+newProject].array.push(currentElement);
                         } else {
                             changeProjectDisplayName(projects[+currentElement.project].value);
-                            projects[+newProject].array.push(currentElement);    
+                            projects[+newProject].array.push(currentElement);
                         }
-                                            }
+                    }
                     const currentProject = updateProjects()[+newProject];
                     displayObjects(sortByChecked(sortProjectArray(currentProject)).array);
                     toggleEditModal();

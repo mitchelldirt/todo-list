@@ -1,11 +1,27 @@
 import { toDoItem } from "../../types";
 import { toDoItemArray } from "../../types";
 import { changeProjectDisplayName, displayObjects, updateProjects } from "../submitForm/handleForm";
-import { isBefore, isThisWeek } from "date-fns";
+import { isBefore, isThisWeek, parseJSON } from "date-fns";
 import trashBin from "../Icons/deleteButton";
-
-
+import { storageAvailable } from "../..";
 let projects: toDoItemArray[] = [];
+
+window.onload = () => {
+    if (storageAvailable() === true) {
+        if (localStorage.length > 0) {
+            projects = JSON.parse(localStorage.getItem("projectsArray"));
+            for (const project of projects) {
+                for (const item of project.array) {
+                    item.dateTime = parseJSON(item.dateTime);
+                }
+            }
+            displayObjects(projects[0].array);
+        } else {
+            console.log(localStorage.length);
+            console.log("nothing in storage lol");
+        }
+    } else { console.log("storage is probably broken"); }
+};
 
 // Open up the projects page
 const projectBtn = document.getElementById("projects") as HTMLButtonElement;
@@ -123,7 +139,7 @@ export function sortProjectArray(input: toDoItemArray): toDoItemArray {
         //if there's a value in the first position
         if (newToDoItemArray.array[0]) {
             for (const newDate of copyOfArray) {
-                if (isBefore(date.dateTime, newDate.dateTime) === true) {
+                if (isBefore(date.dateTime as Date, newDate.dateTime as Date) === true) {
                     const index = newToDoItemArray.array.indexOf(newDate);
                     newToDoItemArray.array.splice(index, 0, date);
                     break;
@@ -158,7 +174,7 @@ export function sortByChecked(input: toDoItemArray): toDoItemArray {
 }
 
 export function currentWeek(obj: toDoItem) {
-    if (isThisWeek(obj.dateTime) === true) {
+    if (isThisWeek(obj.dateTime as Date) === true) {
         return obj;
     }
 }
