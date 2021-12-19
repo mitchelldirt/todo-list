@@ -189,9 +189,20 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
             projects = returnProjects();
             localStorage.setItem("projectsArray", JSON.stringify(projects));
         }
+        const projectIndex: number = whatIsCurrentProject();
         sortByChecked(sortProjectArray(projects[project]));
-         displayObjects(projects[project].array);
+//changeProjectDisplayName(projects[project].value);
+         displayObjects(projects[projectIndex].array);
     };
+}
+
+function whatIsCurrentProject(): number {
+  const projectOptions = document.querySelectorAll("option");
+  for (let i = 0; i < projectOptions.length; i++) {
+    if (projectOptions[i].hasAttribute("selected")) {
+      return +projectOptions[i].value;
+    }
+  }
 }
 
 function isToDoItemChecked(obj: toDoItem) {
