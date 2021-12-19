@@ -176,19 +176,21 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
     element.onclick = () => {
         const project: number = +element.parentElement.getAttribute("data-key");
         const id = element.parentElement.id;
-        for (const item of projects[project].array) {
-            if (item.id === id) {
-                const index: number = projects[project].array.indexOf(item);
-                projects[project].array.splice(index, 1);
-                displayObjects(projects[project].array);
+
+        for (const project of projects) {
+            for (const item of project.array) {
+                if (item.id === id) {
+                    const index: number = project.array.indexOf(item);
+                    project.array.splice(index, 1);
+                }
             }
         }
-        for (const item of projects[0].array) {
-            if (item.id === id) {
-                const index: number = projects[project].array.indexOf(item);
-                projects[0].array.splice(index, 1);
-            }
+        if (storageAvailable()) {
+            projects = returnProjects();
+            localStorage.setItem("projectsArray", JSON.stringify(projects));
         }
+        sortByChecked(sortProjectArray(projects[project]));
+         displayObjects(projects[project].array);
     };
 }
 
@@ -292,6 +294,10 @@ function modifyToDoItem(element: HTMLSpanElement) {
             }
         }
     };
+    if (storageAvailable()) {
+        projects = returnProjects();
+        localStorage.setItem("projectsArray", JSON.stringify(projects));
+    }
 }
 
 function populateModal(element: toDoItem) {
