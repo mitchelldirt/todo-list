@@ -52,8 +52,10 @@ function getInputs() {
 }
 
 function limitTitleLength(text: string): string {
-    if (text.length > 15) {
-        text = text.slice(0, 16) + "...";
+    const availableWidth: number = +document.documentElement.clientWidth;
+    const amountToSlice: number = Math.floor(availableWidth / 20);
+    if (text.length >= amountToSlice) {
+        text = text.slice(0, amountToSlice) + "...";
     }
     return text;
 }
@@ -191,18 +193,18 @@ function addDeleteFunctionality(element: HTMLSpanElement) {
         }
         const projectIndex: number = whatIsCurrentProject();
         sortByChecked(sortProjectArray(projects[project]));
-//changeProjectDisplayName(projects[project].value);
-         displayObjects(projects[projectIndex].array);
+        //changeProjectDisplayName(projects[project].value);
+        displayObjects(projects[projectIndex].array);
     };
 }
 
 function whatIsCurrentProject(): number {
-  const projectOptions = document.querySelectorAll("option");
-  for (let i = 0; i < projectOptions.length; i++) {
-    if (projectOptions[i].hasAttribute("selected")) {
-      return +projectOptions[i].value;
+    const projectOptions = document.querySelectorAll("option");
+    for (let i = 0; i < projectOptions.length; i++) {
+        if (projectOptions[i].hasAttribute("selected")) {
+            return +projectOptions[i].value;
+        }
     }
-  }
 }
 
 function isToDoItemChecked(obj: toDoItem) {

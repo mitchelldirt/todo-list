@@ -1,4 +1,4 @@
-import { displayObjects } from '../../components/submitForm/handleForm';
+import { displayObjects } from "../../components/submitForm/handleForm";
 import { changeCurrentProject, currentWeek, returnProjects, sortProjectArray } from "../../components/projectFunctionality/handleProjects";
 import { toDoItemArray } from "../../types";
 
